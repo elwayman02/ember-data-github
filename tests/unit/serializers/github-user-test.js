@@ -5,7 +5,10 @@ import {
 
 moduleForModel('github-user', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:github-user']
+  needs: [
+    'serializer:github-user',
+    'model:githubRepository'
+  ]
 });
 
 // Replace this with your real tests.
