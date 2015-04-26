@@ -1,7 +1,7 @@
 {
   "name": "ember-data-github",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember Data library for the GitHub API",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "git@github.com:jimmay5469/ember-data-github.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "jimmay5469",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
@@ -34,7 +34,10 @@
     "ember-try": "0.0.4"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-data",
+    "github",
+    "api"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"

@@ -1,6 +1,6 @@
-# Ember-data-github
+# ember-data-github [![Build Status](https://travis-ci.org/jimmay5469/ember-data-github.svg)](https://travis-ci.org/jimmay5469/ember-data-github)
 
-This README outlines the details of collaborating on this Ember addon.
+Ember Data library for the [GitHub API](https://developer.github.com/v3/).
 
 ## Installation
 
