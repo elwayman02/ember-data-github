@@ -4,9 +4,9 @@ import Ember from 'ember';
 export default DS.RESTAdapter.extend({
   session: Ember.inject.service(),
   host: 'https://api.github.com',
-  headers: Ember.computed('session.githubToken', function() {
+  headers: Ember.computed('session.githubAccessToken', function() {
     return {
-      Authorization: `token ${this.get('session.githubToken')}`,
+      Authorization: `token ${this.get('session.githubAccessToken')}`,
     };
   }),
   pathForType: function(type) {

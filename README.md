@@ -8,7 +8,7 @@ Ember Data library for the [GitHub API](https://developer.github.com/v3/).
 ember install ember-data-github
 ```
 
-To use OAuth endpoints you must also make sure you have a session service which contains a property named `githubToken`.
+To use OAuth endpoints you must also make sure you have a session service which contains a property named `githubAccessToken`.
 
 To see what is currently supported check out the `addon/models/` directory.  Currently this addon does not support write actions.
 
