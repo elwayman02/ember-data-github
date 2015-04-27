@@ -1,4 +1,4 @@
-# ember-data-github [![Build Status](https://travis-ci.org/jimmay5469/ember-data-github.svg)](https://travis-ci.org/jimmay5469/ember-data-github)
+# ember-data-github [![Build Status](https://travis-ci.org/jimmay5469/ember-data-github.svg)](https://travis-ci.org/jimmay5469/ember-data-github) [![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
 
 Ember Data library for the [GitHub API](https://developer.github.com/v3/).
 
