@@ -18,4 +18,10 @@ var app = new EmberAddon();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import(app.bowerDirectory + '/FakeXMLHttpRequest/fake_xml_http_request.js', { type: 'test' });
+app.import(app.bowerDirectory + '/route-recognizer/dist/route-recognizer.js', { type: 'test' });
+app.import(app.bowerDirectory + '/pretender/pretender.js', { type: 'test' });
+
+app.import(app.bowerDirectory + '/rosie/src/rosie.js', { type: 'test' });
+
 module.exports = app.toTree();
