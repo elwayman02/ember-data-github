@@ -10,6 +10,6 @@ export default DS.RESTAdapter.extend({
     };
   }),
   pathForType: function(type) {
-    return Ember.String.camelize(type.replace('github',''));
+    return Ember.String.camelize(Ember.String.pluralize(type.replace('github','')));
   }
 });

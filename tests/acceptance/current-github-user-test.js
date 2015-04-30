@@ -7,7 +7,7 @@ import Ember from 'ember';
 
 var server, app, container, store;
 
-module('github-user', {
+module('current-github-user', {
   setup: function() {
     server = new Pretender();
     server.prepareBody = function(body){ return JSON.stringify(body); };
@@ -21,16 +21,16 @@ module('github-user', {
   }
 });
 
-test('finding a user', function(assert) {
+test('finding current user', function(assert) {
   assert.expect(5);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('github-api/users/jimmay5469', function(request) {
+  server.get('github-api/user', function(request) {
     return [200, {}, Factory.build('user')];
   });
 
   return Ember.run(function () {
-    return store.find('githubUser', 'jimmay5469').then(function(user) {
+    return store.find('githubUser', '').then(function(user) {
       assert.equal(user.get('id'), 'user1');
       assert.equal(user.get('name'), 'User 1');
       assert.equal(user.get('avatarUrl'), 'user1-avatar.gif');
