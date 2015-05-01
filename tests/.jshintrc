@@ -23,7 +23,9 @@
     "currentPath",
     "currentRouteName",
     "Factory",
-    "Pretender"
+    "Pretender",
+    "assertGithubUserOk",
+    "assertGithubRepositoryOk"
   ],
   "node": false,
   "browser": false,
