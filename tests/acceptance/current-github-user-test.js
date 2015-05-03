@@ -22,7 +22,7 @@ module('current-github-user', {
 });
 
 test('finding current user', function(assert) {
-  assert.expect(5);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/user', function(request) {
@@ -30,8 +30,9 @@ test('finding current user', function(assert) {
   });
 
   return Ember.run(function () {
-    return store.find('githubUser', '').then(function(user) {
+    return store.find('githubUser', '#').then(function(user) {
       assertGithubUserOk(assert, user);
+      assert.equal(store.all('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });
@@ -39,7 +40,7 @@ test('finding current user', function(assert) {
 });
 
 test('finding current user\'s repositories', function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/user', function(request) {
@@ -54,7 +55,7 @@ test('finding current user\'s repositories', function(assert) {
   });
 
   return Ember.run(function () {
-    return store.find('githubUser', '').then(function(user) {
+    return store.find('githubUser', '#').then(function(user) {
       return user.get('githubRepositories').then(function(repositories) {
         assert.equal(repositories.get('length'), 2);
         assertGithubRepositoryOk(assert, repositories.toArray()[0]);

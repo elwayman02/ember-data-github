@@ -12,7 +12,7 @@ In order to use OAuth endpoints you must also make sure you have a session servi
 
 Examples:
 ```
-this.get('store').find('githubUser', ''); // get the current user
+this.get('store').find('githubUser', '#'); // get the current user
 this.get('store').find('githubUser', 'jimmay5469'); // get a user
 this.get('store').find('githubRepository', 'jimmay5469/old-hash'); // get a repository
 ```

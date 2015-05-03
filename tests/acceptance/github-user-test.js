@@ -22,7 +22,7 @@ module('github-user', {
 });
 
 test('finding a user without authorization', function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   server.get('/users/user1', function(request) {
     return [200, {}, Factory.build('user')];
@@ -38,7 +38,7 @@ test('finding a user without authorization', function(assert) {
 });
 
 test('finding a user', function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', function(request) {
@@ -55,7 +55,7 @@ test('finding a user', function(assert) {
 });
 
 test('finding all users', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/users', function(request) {
@@ -77,7 +77,7 @@ test('finding all users', function(assert) {
 });
 
 test('finding a user\'s repositories', function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', function(request) {
