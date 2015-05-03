@@ -25,17 +25,42 @@ test('finding current user', function(assert) {
   assert.expect(5);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('github-api/user', function(request) {
+  server.get('/user', function(request) {
     return [200, {}, Factory.build('user')];
   });
 
   return Ember.run(function () {
     return store.find('githubUser', '').then(function(user) {
-      assert.equal(user.get('id'), 'user1');
-      assert.equal(user.get('name'), 'User 1');
-      assert.equal(user.get('avatarUrl'), 'user1-avatar.gif');
+      assertGithubUserOk(assert, user);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+    });
+  });
+});
+
+test('finding current user\'s repositories', function(assert) {
+  assert.expect(5);
+
+  container.lookup('service:session').set('githubAccessToken', 'abc123');
+  server.get('/user', function(request) {
+    return [200, {}, Factory.build('user')];
+  });
+  server.get('/user/repos', function(request) {
+    var response = [
+      Factory.build('repository'),
+      Factory.build('repository')
+    ];
+    return [200, {}, response];
+  });
+
+  return Ember.run(function () {
+    return store.find('githubUser', '').then(function(user) {
+      return user.get('githubRepositories').then(function(repositories) {
+        assert.equal(repositories.get('length'), 2);
+        assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+        assert.equal(server.handledRequests.length, 2);
+        assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+      });
     });
   });
 });
