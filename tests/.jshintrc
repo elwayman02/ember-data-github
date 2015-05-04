@@ -25,6 +25,7 @@
     "Factory",
     "Pretender",
     "assertGithubUserOk",
+    "assertGithubOrganizationOk",
     "assertGithubRepositoryOk"
   ],
   "node": false,
