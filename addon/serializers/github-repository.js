@@ -3,7 +3,7 @@ import GithubSerializer from './github';
 export default GithubSerializer.extend({
   normalize: function(type, hash, prop) {
     hash = {
-      id: hash.full_name,
+      id: hash.recordId || hash.full_name,
       fullName: hash.full_name,
       name: hash.name
     };
