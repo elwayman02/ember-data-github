@@ -22,15 +22,16 @@ module('github-user', {
 });
 
 test('finding a user without authorization', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
-  server.get('/users/user1', function(request) {
+  server.get('/users/User1', function(request) {
     return [200, {}, Factory.build('user')];
   });
 
   return Ember.run(function () {
-    return store.find('githubUser', 'user1').then(function(user) {
+    return store.find('githubUser', 'User1').then(function(user) {
       assertGithubUserOk(assert, user);
+      assert.equal(store.all('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
     });
@@ -38,7 +39,7 @@ test('finding a user without authorization', function(assert) {
 });
 
 test('finding a user', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', function(request) {
@@ -48,6 +49,7 @@ test('finding a user', function(assert) {
   return Ember.run(function () {
     return store.find('githubUser', 'user1').then(function(user) {
       assertGithubUserOk(assert, user);
+      assert.equal(store.all('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });

@@ -8,6 +8,7 @@ export default DS.RESTSerializer.extend({
     return this._super(store, primaryType, wrappedPayload);
   },
   extractSingle: function(store, primaryType, payload, recordId) {
+    payload.recordId = recordId;
     var wrappedPayload = {};
     wrappedPayload[primaryType.typeKey] = payload;
     return this._super(store, primaryType, wrappedPayload, recordId);
