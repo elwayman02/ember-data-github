@@ -6,6 +6,7 @@ export default Ember.Test.registerHelper(
     assert.ok(user.get('id'));
     assert.ok(user.get('login'));
     assert.ok(user.get('name'));
+    assert.ok(user.get('type'));
     assert.ok(user.get('avatarUrl'));
   }
 );

@@ -22,7 +22,7 @@ module('current-github-user', {
 });
 
 test('finding current user', function(assert) {
-  assert.expect(7);
+  assert.expect(8);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/user', function(request) {

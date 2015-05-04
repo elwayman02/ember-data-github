@@ -12,6 +12,7 @@ export default GithubSerializer.extend({
       id: hash.recordId || hash.login,
       login: hash.login,
       name: hash.name,
+      type: hash.type,
       avatarUrl: hash.avatar_url,
       links: {
         githubRepositories: hash.repos_url
