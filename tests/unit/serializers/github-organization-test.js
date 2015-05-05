@@ -7,7 +7,8 @@ moduleForModel('github-organization', {
   // Specify the other units that are required for this test.
   needs: [
     'serializer:github-organization',
-    'model:githubRepository'
+    'model:githubRepository',
+    'model:githubUser'
   ]
 });
 
