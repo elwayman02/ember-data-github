@@ -5,7 +5,9 @@ import {
 
 moduleForModel('github-repository', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: [
+    'model:githubUser'
+  ]
 });
 
 test('it exists', function(assert) {
