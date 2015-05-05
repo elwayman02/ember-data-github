@@ -22,7 +22,7 @@ module('github-repository', {
 });
 
 test('finding a repository without authorization', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   server.get('/repos/User1/Repository1', function(request) {
     return [200, {}, Factory.build('repository')];
@@ -39,7 +39,7 @@ test('finding a repository without authorization', function(assert) {
 });
 
 test('finding a repository', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', function(request) {
@@ -57,7 +57,7 @@ test('finding a repository', function(assert) {
 });
 
 test('finding all repositories', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/repositories', function(request) {

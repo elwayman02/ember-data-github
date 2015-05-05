@@ -6,5 +6,6 @@ export default Ember.Test.registerHelper(
     assert.ok(repository.get('id'));
     assert.ok(repository.get('fullName'));
     assert.ok(repository.get('name'));
+    assert.ok(repository.get('description'));
   }
 );

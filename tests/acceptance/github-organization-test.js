@@ -57,7 +57,7 @@ test('finding an organization', function(assert) {
 });
 
 test('finding an organization\'s repositories', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/orgs/organization1', function(request) {

@@ -79,7 +79,7 @@ test('finding all users', function(assert) {
 });
 
 test('finding a user\'s repositories', function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', function(request) {
