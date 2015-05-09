@@ -15,6 +15,7 @@ Examples:
 this.get('store').find('githubUser', '#'); // get the current user
 this.get('store').find('githubUser', 'jimmay5469'); // get a user
 this.get('store').find('githubRepository', 'jimmay5469/old-hash'); // get a repository
+this.get('store').find('githubBranch, 'jimmay5469/old-hash/branches/master'); // get a branch
 ```
 
 ## Installation
