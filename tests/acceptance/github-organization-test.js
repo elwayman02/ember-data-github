@@ -22,8 +22,6 @@ module('github-organization', {
 });
 
 test('finding an organization without authorization', function(assert) {
-  assert.expect(7);
-
   server.get('/orgs/Organization1', function(request) {
     return [200, {}, Factory.build('organization')];
   });
@@ -39,8 +37,6 @@ test('finding an organization without authorization', function(assert) {
 });
 
 test('finding an organization', function(assert) {
-  assert.expect(7);
-
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/orgs/organization1', function(request) {
     return [200, {}, Factory.build('organization')];
@@ -57,8 +53,6 @@ test('finding an organization', function(assert) {
 });
 
 test('finding an organization\'s repositories', function(assert) {
-  assert.expect(7);
-
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/orgs/organization1', function(request) {
     return [200, {}, Factory.build('organization')];
