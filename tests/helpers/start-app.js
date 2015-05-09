@@ -5,10 +5,12 @@ import config from '../../config/environment';
 import UserFactory from './factories/user';
 import OrganizationFactory from './factories/organization';
 import RepositoryFactory from './factories/repository';
+import BranchFactory from './factories/branch';
 import GithubAdapter from 'ember-data-github/adapters/github';
 import assertGithubUserOk from './custom-helpers/assert-github-user-ok';
 import assertGithubOrganizationOk from './custom-helpers/assert-github-organization-ok';
 import assertGithubRepositoryOk from './custom-helpers/assert-github-repository-ok';
+import assertGithubBranchOk from './custom-helpers/assert-github-branch-ok';
 
 export default function startApp(attrs) {
   var application;
@@ -25,6 +27,7 @@ export default function startApp(attrs) {
   UserFactory.defineUser();
   OrganizationFactory.defineOrganization();
   RepositoryFactory.defineRepository();
+  BranchFactory.defineBranch();
 
   // Pretender doesn't work with fully qualified URLs
   GithubAdapter.reopen({

@@ -7,5 +7,10 @@ export default DS.Model.extend({
   owner: DS.belongsTo('githubUser', {
     async: true,
     inverse: null
-  })
+  }),
+  defaultBranch: DS.belongsTo('githubBranch', {
+    async: true,
+    inverse: null
+  }),
+  branches: DS.hasMany('githubBranch', { async: true, })
 });

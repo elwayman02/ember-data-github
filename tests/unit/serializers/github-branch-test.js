@@ -3,13 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('github-user', {
+moduleForModel('github-branch', {
   // Specify the other units that are required for this test.
-  needs: [
-    'serializer:github-user',
-    'model:githubRepository',
-    'model:githubBranch'
-  ]
+  needs: ['serializer:github-branch']
 });
 
 // Replace this with your real tests.

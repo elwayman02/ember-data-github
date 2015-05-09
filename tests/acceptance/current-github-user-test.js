@@ -22,8 +22,6 @@ module('current-github-user', {
 });
 
 test('finding current user', function(assert) {
-  assert.expect(8);
-
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/user', function(request) {
     return [200, {}, Factory.build('user')];
@@ -40,8 +38,6 @@ test('finding current user', function(assert) {
 });
 
 test('finding current user\'s repositories', function(assert) {
-  assert.expect(7);
-
   container.lookup('service:session').set('githubAccessToken', 'abc123');
   server.get('/user', function(request) {
     return [200, {}, Factory.build('user')];

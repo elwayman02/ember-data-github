@@ -8,6 +8,7 @@ moduleForModel('github-organization', {
   needs: [
     'serializer:github-organization',
     'model:githubRepository',
+    'model:githubBranch',
     'model:githubUser'
   ]
 });

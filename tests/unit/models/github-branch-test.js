@@ -3,13 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('github-organization', {
+moduleForModel('github-branch', {
   // Specify the other units that are required for this test.
-  needs: [
-    'model:githubRepository',
-    'model:githubBranch',
-    'model:githubUser'
-  ]
+  needs: []
 });
 
 test('it exists', function(assert) {
