@@ -6,7 +6,8 @@ import {
 moduleForModel('github-repository', {
   // Specify the other units that are required for this test.
   needs: [
-    'model:githubUser'
+    'model:githubUser',
+    'model:githubBranch'
   ]
 });
 

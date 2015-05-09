@@ -99,3 +99,48 @@ test('getting a repository\'s owner', function(assert) {
     });
   });
 });
+
+test('getting a repository\'s default branch', function(assert) {
+  container.lookup('service:session').set('githubAccessToken', 'abc123');
+  server.get('/repos/user1/repository1', function(request) {
+    return [200, {}, Factory.build('repository')];
+  });
+  server.get('/repos/user1/repository1/branches/branch1', function(request) {
+    return [200, {}, Factory.build('branch')];
+  });
+
+  return Ember.run(function () {
+    return store.find('githubRepository', 'user1/repository1').then(function(repository) {
+      return repository.get('defaultBranch').then(function(branch) {
+        assertGithubBranchOk(assert, branch);
+        assert.equal(server.handledRequests.length, 2);
+        assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      });
+    });
+  });
+});
+
+test('finding a repository\'s branches', function(assert) {
+  container.lookup('service:session').set('githubAccessToken', 'abc123');
+  server.get('/repos/user1/repository1', function(request) {
+    return [200, {}, Factory.build('repository')];
+  });
+  server.get('/repos/user1/repository1/branches', function(request) {
+    var response = [
+      Factory.build('branch'),
+      Factory.build('branch')
+    ];
+    return [200, {}, response];
+  });
+
+  return Ember.run(function () {
+    return store.find('githubRepository', 'user1/repository1').then(function(repository) {
+      return repository.get('branches').then(function(branches) {
+        assert.equal(branches.get('length'), 2);
+        assertGithubBranchOk(assert, branches.toArray()[0]);
+        assert.equal(server.handledRequests.length, 2);
+        assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+      });
+    });
+  });
+});

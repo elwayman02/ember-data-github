@@ -8,7 +8,9 @@ export default GithubSerializer.extend({
       name: hash.name,
       description: hash.description,
       links: {
-        owner: hash.owner.url
+        owner: hash.owner.url,
+        defaultBranch: `${hash.url}/branches/${hash.default_branch}`,
+        branches: `${hash.url}/branches`
       }
     };
     return this._super(type, hash, prop);
