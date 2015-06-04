@@ -16,7 +16,13 @@ export default GithubSerializer.extend({
       avatarUrl: hash.avatar_url,
       links: {
         githubRepositories: hash.repos_url
-      }
+      },
+      publicRepos: has.public_repos,
+      publicGists: has.public_gists,
+      followers: has.followers,
+      following: has.following,
+      createdAt: has.created_at,
+      updatedAt: has.updated_at
     };
     return this._super(type, hash, prop);
   }
