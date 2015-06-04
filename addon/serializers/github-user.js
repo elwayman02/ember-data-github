@@ -17,12 +17,12 @@ export default GithubSerializer.extend({
       links: {
         githubRepositories: hash.repos_url
       },
-      publicRepos: has.public_repos,
-      publicGists: has.public_gists,
-      followers: has.followers,
-      following: has.following,
-      createdAt: has.created_at,
-      updatedAt: has.updated_at
+      publicRepos: hash.public_repos,
+      publicGists: hash.public_gists,
+      followers: hash.followers,
+      following: hash.following,
+      createdAt: hash.created_at,
+      updatedAt: hash.updated_at
     };
     return this._super(type, hash, prop);
   }
