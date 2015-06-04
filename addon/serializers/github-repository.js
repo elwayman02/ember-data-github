@@ -7,6 +7,7 @@ export default GithubSerializer.extend({
       fullName: hash.full_name,
       name: hash.name,
       description: hash.description,
+      url: hash.html_url,
       language: hash.language,
       isFork: hash.fork,
       isPrivate: hash.private,
