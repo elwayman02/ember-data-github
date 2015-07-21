@@ -14,15 +14,15 @@ export default GithubSerializer.extend({
       name: hash.name,
       type: hash.type,
       avatarUrl: hash.avatar_url,
-      links: {
-        githubRepositories: hash.repos_url
-      },
       publicRepos: hash.public_repos,
       publicGists: hash.public_gists,
       followers: hash.followers,
       following: hash.following,
       createdAt: hash.created_at,
-      updatedAt: hash.updated_at
+      updatedAt: hash.updated_at,
+      links: {
+        githubRepositories: hash.repos_url
+      }
     };
     return this._super(type, hash, prop);
   }
