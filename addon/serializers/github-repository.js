@@ -7,6 +7,13 @@ export default GithubSerializer.extend({
       fullName: hash.full_name,
       name: hash.name,
       description: hash.description,
+      url: hash.html_url,
+      language: hash.language,
+      isFork: hash.fork,
+      isPrivate: hash.private,
+      createdAt: hash.created_at,
+      updatedAt: hash.updated_at,
+      pushedAt: hash.pushed_at,
       links: {
         owner: hash.owner.url,
         defaultBranch: `${hash.url}/branches/${hash.default_branch}`,
