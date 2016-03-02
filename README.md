@@ -1,3 +1,5 @@
+**Note**: I no longer maintain this addon but it should continue to be compatible with ember and ember-data 1.13. If anyone would like to take over it let me know and I can work with you to get everything transferred over.
+
 # ember-data-github [![Build Status](https://travis-ci.org/jimmay5469/ember-data-github.svg?branch=master)](https://travis-ci.org/jimmay5469/ember-data-github) [![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
 
 Ember Data library for the [GitHub API](https://developer.github.com/v3/).
