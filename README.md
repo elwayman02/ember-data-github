@@ -1,6 +1,8 @@
 # Ember Data Github 
 
-[![Build Status](https://travis-ci.org/jimmay5469/ember-data-github.svg?branch=master)](https://travis-ci.org/jimmay5469/ember-data-github) [![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
+[![Build Status](https://travis-ci.org/elwayman02/ember-data-github.svg?branch=master)](https://travis-ci.org/elwayman02/ember-data-github)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
+[![Code Climate](https://codeclimate.com/github/elwayman02/ember-data-github/badges/gpa.svg)](https://codeclimate.com/github/elwayman02/ember-data-github)
 
 Ember Data abstraction for the [GitHub API](https://developer.github.com/v3/).
 
