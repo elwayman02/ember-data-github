@@ -11,7 +11,9 @@ let server, app, container, store;
 moduleForAcceptance('Acceptance | github branch', {
   beforeEach() {
     server = new Pretender();
-    server.prepareBody = function(body){ return JSON.stringify(body); };
+    server.prepareBody = function (body) {
+      return JSON.stringify(body);
+    };
     app = startApp();
     container = app.__container__;
     store = run(container, 'lookup', 'service:store');
@@ -24,7 +26,7 @@ moduleForAcceptance('Acceptance | github branch', {
   }
 });
 
-test('finding a branch without authorization', function(assert) {
+test('finding a branch without authorization', function (assert) {
   server.get('/repos/User1/Repository1/branches/Branch1', () => {
     return [200, {}, Factory.build('branch')];
   });
@@ -39,7 +41,7 @@ test('finding a branch without authorization', function(assert) {
   });
 });
 
-test('finding a branch', function(assert) {
+test('finding a branch', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1/branches/branch1', () => {
     return [200, {}, Factory.build('branch')];

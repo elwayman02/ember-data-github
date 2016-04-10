@@ -6,7 +6,7 @@ moduleForModel('github-branch', 'Unit | Serializer | github branch', {
 });
 
 // Replace this with your real tests.
-test('it serializes records', function(assert) {
+test('it serializes records', function (assert) {
   let record = this.subject();
 
   let serializedRecord = record.serialize();

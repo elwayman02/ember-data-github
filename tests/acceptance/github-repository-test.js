@@ -11,7 +11,9 @@ let server, app, container, store;
 moduleForAcceptance('Acceptance | github repository', {
   beforeEach() {
     server = new Pretender();
-    server.prepareBody = function(body){ return JSON.stringify(body); };
+    server.prepareBody = function (body) {
+      return JSON.stringify(body);
+    };
     app = startApp();
     container = app.__container__;
     store = run(container, 'lookup', 'service:store');
@@ -24,7 +26,7 @@ moduleForAcceptance('Acceptance | github repository', {
   }
 });
 
-test('finding a repository without authorization', function(assert) {
+test('finding a repository without authorization', function (assert) {
   server.get('/repos/User1/Repository1', () => {
     return [200, {}, Factory.build('repository')];
   });
@@ -39,7 +41,7 @@ test('finding a repository without authorization', function(assert) {
   });
 });
 
-test('finding a repository', function(assert) {
+test('finding a repository', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
     return [200, {}, Factory.build('repository')];
@@ -55,10 +57,10 @@ test('finding a repository', function(assert) {
   });
 });
 
-test('finding all repositories', function(assert) {
+test('finding all repositories', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repositories', () => {
-    var response = [
+    let response = [
       Factory.build('repository'),
       Factory.build('repository')
     ];
@@ -66,7 +68,7 @@ test('finding all repositories', function(assert) {
   });
 
   return run(() => {
-    return store.findAll('githubRepository').then(function(repositories) {
+    return store.findAll('githubRepository').then(function (repositories) {
       assert.equal(repositories.get('length'), 2);
       assertGithubRepositoryOk(assert, repositories.toArray()[0]);
       assert.equal(server.handledRequests.length, 1);
@@ -75,7 +77,7 @@ test('finding all repositories', function(assert) {
   });
 });
 
-test('getting a repository\'s owner', function(assert) {
+test('getting a repository\'s owner', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
     return [200, {}, Factory.build('repository')];
@@ -86,7 +88,7 @@ test('getting a repository\'s owner', function(assert) {
 
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
-      return repository.get('owner').then(function(owner) {
+      return repository.get('owner').then(function (owner) {
         assertGithubUserOk(assert, owner);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
@@ -95,7 +97,7 @@ test('getting a repository\'s owner', function(assert) {
   });
 });
 
-test('getting a repository\'s default branch', function(assert) {
+test('getting a repository\'s default branch', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
     return [200, {}, Factory.build('repository')];
@@ -106,7 +108,7 @@ test('getting a repository\'s default branch', function(assert) {
 
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
-      return repository.get('defaultBranch').then(function(branch) {
+      return repository.get('defaultBranch').then(function (branch) {
         assertGithubBranchOk(assert, branch);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
@@ -115,13 +117,13 @@ test('getting a repository\'s default branch', function(assert) {
   });
 });
 
-test('finding a repository\'s branches', function(assert) {
+test('finding a repository\'s branches', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
     return [200, {}, Factory.build('repository')];
   });
   server.get('/repos/user1/repository1/branches', () => {
-    var response = [
+    let response = [
       Factory.build('branch'),
       Factory.build('branch')
     ];
@@ -130,7 +132,7 @@ test('finding a repository\'s branches', function(assert) {
 
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
-      return repository.get('branches').then(function(branches) {
+      return repository.get('branches').then(function (branches) {
         assert.equal(branches.get('length'), 2);
         assertGithubBranchOk(assert, branches.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);

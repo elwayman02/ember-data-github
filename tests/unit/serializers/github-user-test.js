@@ -5,12 +5,12 @@ moduleForModel('github-user', 'Unit | Serializer | github user', {
   needs: [
     'serializer:github-user',
     'model:githubRepository',
-    'model:githubBranch',
+    'model:githubBranch'
   ]
 });
 
 // Replace this with your real tests.
-test('it serializes records', function(assert) {
+test('it serializes records', function (assert) {
   let record = this.subject();
 
   let serializedRecord = record.serialize();

@@ -10,16 +10,16 @@ export default RESTAdapter.extend({
 
   host: 'https://api.github.com',
 
-  headers: computed('session.githubAccessToken', function() {
-    var headers = {};
-    if(this.get('session.githubAccessToken')) {
+  headers: computed('session.githubAccessToken', function () {
+    let headers = {};
+    if (this.get('session.githubAccessToken')) {
       headers.Authorization = `token ${this.get('session.githubAccessToken')}`;
     }
     return headers;
   }),
 
   pathForType(type) {
-    return Ember.String.camelize(Ember.String.pluralize(type.replace('github','')));
+    return Ember.String.camelize(Ember.String.pluralize(type.replace('github', '')));
   }
 
 });

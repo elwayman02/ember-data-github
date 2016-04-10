@@ -6,7 +6,7 @@ moduleFor('adapter:github-organization', 'Unit | Adapter | github organization',
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let adapter = this.subject();
   assert.ok(adapter);
 });

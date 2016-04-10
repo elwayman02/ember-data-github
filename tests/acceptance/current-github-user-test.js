@@ -11,7 +11,9 @@ let server, app, container, store;
 moduleForAcceptance('Acceptance | current github user', {
   beforeEach() {
     server = new Pretender();
-    server.prepareBody = function(body){ return JSON.stringify(body); };
+    server.prepareBody = function (body) {
+      return JSON.stringify(body);
+    };
     app = startApp();
     container = app.__container__;
     store = run(container, 'lookup', 'service:store');
@@ -28,8 +30,7 @@ moduleForAcceptance('Acceptance | current github user', {
   }
 });
 
-
-test('finding current user', function(assert) {
+test('finding current user', function (assert) {
   return run(() => {
     return store.findRecord('githubUser', '#').then((user) => {
       assertGithubUserOk(assert, user);
@@ -40,9 +41,9 @@ test('finding current user', function(assert) {
   });
 });
 
-test(`finding current user's repositories`, function(assert) {
+test(`finding current user's repositories`, function (assert) {
   server.get('/user/repos', () => {
-    const response = [
+    let response = [
       Factory.build('repository'),
       Factory.build('repository')
     ];
