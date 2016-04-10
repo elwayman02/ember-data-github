@@ -1,25 +1,25 @@
 import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
-  normalize: function(type, hash, prop) {
-    hash = {
-      id: hash.recordId || hash.full_name,
-      fullName: hash.full_name,
-      name: hash.name,
-      description: hash.description,
-      htmlUrl: hash.html_url,
-      language: hash.language,
-      fork: hash.fork,
-      private: hash.private,
-      createdAt: hash.created_at,
-      updatedAt: hash.updated_at,
-      pushedAt: hash.pushed_at,
+  normalize(modelClass, resourceHash, prop) {
+    const hash = {
+      id: resourceHash.recordId || resourceHash.full_name,
+      fullName: resourceHash.full_name,
+      name: resourceHash.name,
+      description: resourceHash.description,
+      htmlUrl: resourceHash.html_url,
+      language: resourceHash.language,
+      fork: resourceHash.fork,
+      private: resourceHash.private,
+      createdAt: resourceHash.created_at,
+      updatedAt: resourceHash.updated_at,
+      pushedAt: resourceHash.pushed_at,
       links: {
-        owner: hash.owner.url,
-        defaultBranch: `${hash.url}/branches/${hash.default_branch}`,
-        branches: `${hash.url}/branches`
+        owner: resourceHash.owner.url,
+        defaultBranch: `${resourceHash.url}/branches/${resourceHash.default_branch}`,
+        branches: `${resourceHash.url}/branches`
       }
     };
-    return this._super(type, hash, prop);
+    return this._super(modelClass, hash, prop);
   }
 });
