@@ -33,7 +33,7 @@ test('finding current user', function(assert) {
   return run(() => {
     return store.findRecord('githubUser', '#').then((user) => {
       assertGithubUserOk(assert, user);
-      assert.equal(store.all('githubUser').get('length'), 1);
+      assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });
