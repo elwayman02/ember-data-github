@@ -17,22 +17,20 @@
     "find",
     "findWithAssert",
     "wait",
-    "DS",
     "andThen",
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "Factory",
-    "Pretender",
-    "assertGithubUserOk",
+    "assertGithubBranchOk",
     "assertGithubOrganizationOk",
     "assertGithubRepositoryOk",
-    "assertGithubBranchOk"
+    "assertGithubUserOk",
+    "Factory"
   ],
   "node": false,
   "browser": false,
   "boss": true,
-  "curly": false,
+  "curly": true,
   "debug": false,
   "devel": false,
   "eqeqeq": true,
@@ -53,5 +51,6 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": true
+  "esnext": true,
+  "unused": true
 }

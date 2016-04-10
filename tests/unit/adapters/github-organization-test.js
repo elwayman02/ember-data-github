@@ -1,15 +1,12 @@
-import {
-  moduleFor,
-  test
-} from 'ember-qunit';
+import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('adapter:github-organization', 'GithubOrganizationAdapter', {
+moduleFor('adapter:github-organization', 'Unit | Adapter | github organization', {
   // Specify the other units that are required for this test.
   // needs: ['serializer:foo']
 });
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  var adapter = this.subject();
+  let adapter = this.subject();
   assert.ok(adapter);
 });

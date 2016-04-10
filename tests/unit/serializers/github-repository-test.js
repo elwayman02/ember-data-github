@@ -1,22 +1,19 @@
-import {
-  moduleForModel,
-  test
-} from 'ember-qunit';
+import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('github-repository', {
+moduleForModel('github-repository', 'Unit | Serializer | github repository', {
   // Specify the other units that are required for this test.
   needs: [
     'serializer:github-repository',
     'model:githubBranch',
-    'model:githubUser'
+    'model:githubUser',
   ]
 });
 
 // Replace this with your real tests.
 test('it serializes records', function(assert) {
-  var record = this.subject();
+  let record = this.subject();
 
-  var serializedRecord = record.serialize();
+  let serializedRecord = record.serialize();
 
   assert.ok(serializedRecord);
 });

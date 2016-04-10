@@ -1,5 +1,5 @@
 export default {
-  defineBranch: function() {
+  defineBranch() {
     Factory.define('branch')
       .sequence('name', function(i) { return `branch${i}`; })
       .attr('commit', {

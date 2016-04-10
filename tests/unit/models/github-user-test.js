@@ -1,18 +1,15 @@
-import {
-  moduleForModel,
-  test
-} from 'ember-qunit';
+import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('github-user', {
+moduleForModel('github-user', 'Unit | Model | github user', {
   // Specify the other units that are required for this test.
   needs: [
     'model:githubRepository',
-    'model:githubBranch'
+    'model:githubBranch',
   ]
 });
 
 test('it exists', function(assert) {
-  var model = this.subject();
-  // var store = this.store();
+  let model = this.subject();
+  // let store = this.store();
   assert.ok(!!model);
 });
