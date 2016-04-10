@@ -9,11 +9,10 @@ export default DS.RESTSerializer.extend({
     payload.recordId = id;
     let wrappedPayload = {};
     let fieldName = primaryModelClass.modelName;
-    if(isArray(payload)) {
+    if (isArray(payload)) {
       fieldName = Str.pluralize(fieldName);
     }
     wrappedPayload[fieldName] = payload;
     return this._super(store, primaryModelClass, wrappedPayload, id, requestType);
-  },
-
+  }
 });

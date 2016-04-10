@@ -11,7 +11,9 @@ let server, app, container, store;
 moduleForAcceptance('Acceptance | github user', {
   beforeEach() {
     server = new Pretender();
-    server.prepareBody = function(body){ return JSON.stringify(body); };
+    server.prepareBody = function (body) {
+      return JSON.stringify(body);
+    };
     app = startApp();
     container = app.__container__;
     store = run(container, 'lookup', 'service:store');
@@ -24,7 +26,7 @@ moduleForAcceptance('Acceptance | github user', {
   }
 });
 
-test('finding a user without authorization', function(assert) {
+test('finding a user without authorization', function (assert) {
   server.get('/users/User1', () => {
     return [200, {}, Factory.build('user')];
   });
@@ -39,7 +41,7 @@ test('finding a user without authorization', function(assert) {
   });
 });
 
-test('finding a user', function(assert) {
+test('finding a user', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', () => {
     return [200, {}, Factory.build('user')];
@@ -55,10 +57,10 @@ test('finding a user', function(assert) {
   });
 });
 
-test('finding all users', function(assert) {
+test('finding all users', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/users', () => {
-    const response = [
+    let response = [
       Factory.build('user'),
       Factory.build('user')
     ];
@@ -75,13 +77,13 @@ test('finding all users', function(assert) {
   });
 });
 
-test(`finding a user's repositories`, function(assert) {
+test(`finding a user's repositories`, function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', () => {
     return [200, {}, Factory.build('user')];
   });
   server.get('/users/user1/repos', () => {
-    const response = [
+    let response = [
       Factory.build('repository'),
       Factory.build('repository')
     ];

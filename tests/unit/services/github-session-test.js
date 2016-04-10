@@ -6,7 +6,7 @@ moduleFor('service:github-session', 'Unit | Service | github session', {
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let service = this.subject();
   assert.ok(service);
 });

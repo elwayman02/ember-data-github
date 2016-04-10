@@ -38,7 +38,7 @@ export default function startApp(attrs) {
   GithubAdapter.reopen({
     // Caution: overriding ember-data private api
     ajax(url, type, options) {
-      url = url.replace('https://api.github.com','');
+      url = url.replace('https://api.github.com', '');
       return this._super(url, type, options);
     }
   });

@@ -5,11 +5,11 @@ moduleForModel('github-organization', 'Unit | Model | github organization', {
   needs: [
     'model:githubRepository',
     'model:githubBranch',
-    'model:githubUser',
+    'model:githubUser'
   ]
 });
 
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let model = this.subject();
   // let store = this.store();
   assert.ok(!!model);

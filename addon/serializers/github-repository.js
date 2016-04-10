@@ -2,7 +2,8 @@ import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
   normalize(modelClass, resourceHash, prop) {
-    const hash = {
+    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+    let hash = {
       id: resourceHash.recordId || resourceHash.full_name,
       fullName: resourceHash.full_name,
       name: resourceHash.name,
@@ -20,6 +21,7 @@ export default GithubSerializer.extend({
         branches: `${resourceHash.url}/branches`
       }
     };
+    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
     return this._super(modelClass, hash, prop);
   }
 });

@@ -1,7 +1,8 @@
 import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
-  normalize: function(type, hash, prop) {
+  normalize(type, hash, prop) {
+    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
     hash = {
       id: hash.recordId || hash.login,
       login: hash.login,
@@ -11,6 +12,7 @@ export default GithubSerializer.extend({
         githubRepositories: hash.repos_url
       }
     };
+    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
     return this._super(type, hash, prop);
   }
 });
