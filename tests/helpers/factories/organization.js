@@ -1,5 +1,5 @@
 export default {
-  defineOrganization: function() {
+  defineOrganization() {
     Factory.define('organization')
       .sequence('id')
       .sequence('login', function(i) { return `organization${i}`; })

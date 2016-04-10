@@ -1,6 +1,7 @@
-var sampleDate = new Date().toISOString();
+const sampleDate = new Date().toISOString();
+
 export default {
-  defineUser: function() {
+  defineUser() {
     Factory.define('user')
       .sequence('id')
       .sequence('login', function(i) { return `user${i}`; })

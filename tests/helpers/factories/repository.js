@@ -1,6 +1,6 @@
 var sampleDate = new Date().toISOString();
 export default {
-  defineRepository: function() {
+  defineRepository() {
     Factory.define('repository')
       .sequence('id')
       .sequence('name', function(i) { return `repository${i}`; })

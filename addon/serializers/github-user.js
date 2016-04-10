@@ -1,29 +1,32 @@
 import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
-  extractSingle: function(store, primaryType, payload, recordId) {
-    if(recordId==='#') {
+
+  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+    if(id === '#') {
       payload.repos_url = payload.repos_url.replace(`users/${payload.login}`, 'user');
     }
-    return this._super(store, primaryType, payload, recordId);
+    return this._super(store, primaryModelClass, payload, id, requestType);
   },
-  normalize: function(type, hash, prop) {
-    hash = {
-      id: hash.recordId || hash.login,
-      login: hash.login,
-      name: hash.name,
-      type: hash.type,
-      avatarUrl: hash.avatar_url,
-      publicRepos: hash.public_repos,
-      publicGists: hash.public_gists,
-      followers: hash.followers,
-      following: hash.following,
-      createdAt: hash.created_at,
-      updatedAt: hash.updated_at,
+
+  normalize(modelClass, resourceHash, prop) {
+    const normalizedHash = {
+      id: resourceHash.recordId || resourceHash.login,
+      login: resourceHash.login,
+      name: resourceHash.name,
+      type: resourceHash.type,
+      avatarUrl: resourceHash.avatar_url,
+      publicRepos: resourceHash.public_repos,
+      publicGists: resourceHash.public_gists,
+      followers: resourceHash.followers,
+      following: resourceHash.following,
+      createdAt: resourceHash.created_at,
+      updatedAt: resourceHash.updated_at,
       links: {
-        githubRepositories: hash.repos_url
+        githubRepositories: resourceHash.repos_url
       }
     };
-    return this._super(type, hash, prop);
+    return this._super(modelClass, normalizedHash, prop);
   }
+
 });

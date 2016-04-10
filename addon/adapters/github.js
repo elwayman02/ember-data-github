@@ -1,17 +1,25 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-export default DS.RESTAdapter.extend({
-  session: Ember.inject.service(),
+const { RESTAdapter } = DS;
+const { computed, inject } = Ember;
+
+export default RESTAdapter.extend({
+
+  session: inject.service('github-session'),
+
   host: 'https://api.github.com',
-  headers: Ember.computed('session.githubAccessToken', function() {
+
+  headers: computed('session.githubAccessToken', function() {
     var headers = {};
     if(this.get('session.githubAccessToken')) {
       headers.Authorization = `token ${this.get('session.githubAccessToken')}`;
     }
     return headers;
   }),
-  pathForType: function(type) {
+
+  pathForType(type) {
     return Ember.String.camelize(Ember.String.pluralize(type.replace('github','')));
   }
+
 });

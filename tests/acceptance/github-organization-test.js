@@ -1,35 +1,38 @@
-import {
-  module,
-  test
-} from 'qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import startApp from 'dummy/tests/helpers/start-app';
+import Pretender from 'pretender';
 import Ember from 'ember';
 
-var server, app, container, store;
+const { run } = Ember;
 
-module('github-organization', {
-  setup: function() {
+let server, app, container, store;
+
+moduleForAcceptance('Acceptance | github organization', {
+  beforeEach() {
     server = new Pretender();
     server.prepareBody = function(body){ return JSON.stringify(body); };
     app = startApp();
     container = app.__container__;
-    store = container.lookup("store:main");
+    store = run(container, 'lookup', 'service:store');
   },
-  teardown: function() {
-    Ember.run(app, 'destroy');
+
+  afterEach() {
     server.shutdown();
+    run(app, app.destroy);
+    Ember.BOOTED = false;
   }
 });
 
 test('finding an organization without authorization', function(assert) {
-  server.get('/orgs/Organization1', function(request) {
+  server.get('/orgs/Organization1', () => {
     return [200, {}, Factory.build('organization')];
   });
 
-  return Ember.run(function () {
-    return store.find('githubOrganization', 'Organization1').then(function(organization) {
+  return run(() => {
+    return store.findRecord('githubOrganization', 'Organization1').then((organization) => {
       assertGithubOrganizationOk(assert, organization);
-      assert.equal(store.all('githubOrganization').get('length'), 1);
+      assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
     });
@@ -37,36 +40,36 @@ test('finding an organization without authorization', function(assert) {
 });
 
 test('finding an organization', function(assert) {
-  container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('/orgs/organization1', function(request) {
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/orgs/organization1', () => {
     return [200, {}, Factory.build('organization')];
   });
 
-  return Ember.run(function () {
-    return store.find('githubOrganization', 'organization1').then(function(organization) {
+  return run(() => {
+    return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       assertGithubOrganizationOk(assert, organization);
-      assert.equal(store.all('githubOrganization').get('length'), 1);
+      assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });
   });
 });
 
-test('finding an organization\'s repositories', function(assert) {
-  container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('/orgs/organization1', function(request) {
+test(`finding an organization's repositories`, function(assert) {
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/orgs/organization1', () => {
     return [200, {}, Factory.build('organization')];
   });
-  server.get('/orgs/organization1/repos', function(request) {
-    var response = [
+  server.get('/orgs/organization1/repos', () => {
+    const response = [
       Factory.build('repository'),
       Factory.build('repository')
     ];
     return [200, {}, response];
   });
 
-  return Ember.run(function () {
-    return store.find('githubOrganization', 'organization1').then(function(organization) {
+  return run(() => {
+    return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       return organization.get('githubRepositories').then(function(repositories) {
         assert.equal(repositories.get('length'), 2);
         assertGithubRepositoryOk(assert, repositories.toArray()[0]);
@@ -76,3 +79,4 @@ test('finding an organization\'s repositories', function(assert) {
     });
   });
 });
+

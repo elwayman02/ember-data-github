@@ -1,58 +1,57 @@
-import {
-  module,
-  test
-} from 'qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import startApp from 'dummy/tests/helpers/start-app';
+import Pretender from 'pretender';
 import Ember from 'ember';
 
-var server, app, container, store;
+const { run } = Ember;
 
-module('current-github-user', {
-  setup: function() {
+let server, app, container, store;
+
+moduleForAcceptance('Acceptance | current github user', {
+  beforeEach() {
     server = new Pretender();
     server.prepareBody = function(body){ return JSON.stringify(body); };
     app = startApp();
     container = app.__container__;
-    store = container.lookup("store:main");
+    store = run(container, 'lookup', 'service:store');
+    container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+    server.get('/user', () => {
+      return [200, {}, Factory.build('user')];
+    });
   },
-  teardown: function() {
-    Ember.run(app, 'destroy');
+
+  afterEach() {
     server.shutdown();
+    run(app, app.destroy);
+    Ember.BOOTED = false;
   }
 });
 
-test('finding current user', function(assert) {
-  container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('/user', function(request) {
-    return [200, {}, Factory.build('user')];
-  });
 
-  return Ember.run(function () {
-    return store.find('githubUser', '#').then(function(user) {
+test('finding current user', function(assert) {
+  return run(() => {
+    return store.findRecord('githubUser', '#').then((user) => {
       assertGithubUserOk(assert, user);
-      assert.equal(store.all('githubUser').get('length'), 1);
+      assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });
   });
 });
 
-test('finding current user\'s repositories', function(assert) {
-  container.lookup('service:session').set('githubAccessToken', 'abc123');
-  server.get('/user', function(request) {
-    return [200, {}, Factory.build('user')];
-  });
-  server.get('/user/repos', function(request) {
-    var response = [
+test(`finding current user's repositories`, function(assert) {
+  server.get('/user/repos', () => {
+    const response = [
       Factory.build('repository'),
       Factory.build('repository')
     ];
     return [200, {}, response];
   });
 
-  return Ember.run(function () {
-    return store.find('githubUser', '#').then(function(user) {
-      return user.get('githubRepositories').then(function(repositories) {
+  return run(() => {
+    return store.findRecord('githubUser', '#').then((user) => {
+      return user.get('githubRepositories').then((repositories) => {
         assert.equal(repositories.get('length'), 2);
         assertGithubRepositoryOk(assert, repositories.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);
@@ -61,3 +60,4 @@ test('finding current user\'s repositories', function(assert) {
     });
   });
 });
+
