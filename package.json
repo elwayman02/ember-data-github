@@ -1,7 +1,7 @@
 {
   "name": "ember-data-github",
   "version": "0.0.6",
-  "description": "Ember Data library for the GitHub API",
+  "description": "Ember Data abstraction for the GitHub API",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,7 +15,11 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "jimmay5469",
+  "author": "Jordan Hawker <hawker.jordan@gmail.com> (http://www.JordanHawker.com)",
+  "maintainers": [
+    "jimmay5469",
+    "Jordan Hawker <hawker.jordan@gmail.com> (http://www.JordanHawker.com)"
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
