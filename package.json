@@ -1,6 +1,6 @@
 {
   "name": "ember-data-github",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Ember Data abstraction for the GitHub API",
   "directories": {
     "doc": "doc",
