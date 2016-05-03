@@ -14,8 +14,7 @@ export default GithubSerializer.extend({
       closedAt: resourceHash.closed_at,
       mergedAt: resourceHash.merged_at,
       links: {
-        user: resourceHash.user.url,
-        assignee: resourceHash.assignee.url
+        user: resourceHash.user.url
       }
     };
     // jscs:enable requireCamelCaseOrUpperCaseIdentifiers

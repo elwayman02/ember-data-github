@@ -12,9 +12,5 @@ export default DS.Model.extend({
   user: DS.belongsTo('githubUser', {
     async: true,
     inverse: null
-  }),
-  assignee: DS.belongsTo('githubUser', {
-    async: true,
-    inverse: null
   })
 });
