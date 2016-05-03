@@ -19,5 +19,6 @@ export default DS.Model.extend({
     async: true,
     inverse: null
   }),
-  branches: DS.hasMany('githubBranch', { async: true })
+  branches: DS.hasMany('githubBranch', { async: true }),
+  pulls: DS.hasMany('githubPull', { async: true })
 });
