@@ -5,6 +5,7 @@ export default GithubSerializer.extend({
     // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
     let hash = {
       id: resourceHash.id,
+      number: resourceHash.number,
       title: resourceHash.title,
       state: resourceHash.state,
       htmlUrl: resourceHash.html_url,
@@ -13,6 +14,8 @@ export default GithubSerializer.extend({
       updatedAt: resourceHash.updated_at,
       closedAt: resourceHash.closed_at,
       mergedAt: resourceHash.merged_at,
+      userAvatarUrl: resourceHash.user.avatar_url,
+      userLogin: resourceHash.user.login,
       links: {
         user: resourceHash.user.url
       }
