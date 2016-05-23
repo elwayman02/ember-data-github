@@ -1,11 +1,10 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('github-repository', 'Unit | Model | github repository', {
+moduleForModel('github-pull', 'Unit | Model | github pull', {
   // Specify the other units that are required for this test.
   needs: [
     'model:githubUser',
-    'model:githubBranch',
-    'model:githubPull'
+    'model:githubBranch'
   ]
 });
 
