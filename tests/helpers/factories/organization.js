@@ -7,6 +7,8 @@ export default {
         return `Organization ${i}`;
       }).sequence('avatar_url', function (i) {
         return `organization${i}-avatar.gif`;
+      }).sequence('members_url', function (i) {
+        return `https://api.github.com/orgs/organization${i}/members{/member}`;
       }).sequence('repos_url', function (i) {
         return `https://api.github.com/orgs/organization${i}/repos`;
       });

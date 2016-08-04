@@ -9,6 +9,7 @@ export default GithubSerializer.extend({
       name: hash.name,
       avatarUrl: hash.avatar_url,
       links: {
+        githubUsers: hash.members_url.replace(/\{\/member\}/, ''),
         githubRepositories: hash.repos_url
       }
     };
