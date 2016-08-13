@@ -19,7 +19,7 @@ export default GithubSerializer.extend({
         owner: resourceHash.owner.url,
         defaultBranch: `${resourceHash.url}/branches/${resourceHash.default_branch}`,
         branches: `${resourceHash.url}/branches`,
-        pulls: `${resourceHash.url}/pulls`,
+        pulls: `${resourceHash.url}/pulls`
       }
     };
     // jscs:enable requireCamelCaseOrUpperCaseIdentifiers

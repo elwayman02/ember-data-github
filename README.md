@@ -35,12 +35,12 @@ this.get('store').findRecord('githubBranch, 'jimmay5469/old-hash/branches/master
 
 ### Running
 
-* `ember server`
+* `ember serve`
 * Visit your app at http://localhost:4200.
 
 ### Running Tests
 
-* `npm test`
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -48,4 +48,4 @@ this.get('store').findRecord('githubBranch, 'jimmay5469/old-hash/branches/master
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).

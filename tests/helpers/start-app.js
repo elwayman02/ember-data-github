@@ -1,4 +1,3 @@
-/* jshint unused:false */
 import Ember from 'ember';
 import Application from '../../app';
 import config from '../../config/environment';
@@ -10,10 +9,12 @@ import OrganizationFactory from './factories/organization';
 import RepositoryFactory from './factories/repository';
 import BranchFactory from './factories/branch';
 
+/* eslint-disable no-unused-vars */
 import assertGithubBranchOk from './custom-helpers/assert-github-branch-ok';
 import assertGithubOrganizationOk from './custom-helpers/assert-github-organization-ok';
 import assertGithubRepositoryOk from './custom-helpers/assert-github-repository-ok';
 import assertGithubUserOk from './custom-helpers/assert-github-user-ok';
+/* eslint-enable no-unused-vars */
 
 const { merge, run } = Ember;
 
