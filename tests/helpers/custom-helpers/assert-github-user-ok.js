@@ -14,5 +14,6 @@ export default Ember.Test.registerHelper(
     assert.ok(user.get('following'));
     assert.ok(user.get('createdAt'));
     assert.ok(user.get('updatedAt'));
+    assert.ok(user.get('url'));
   }
 );

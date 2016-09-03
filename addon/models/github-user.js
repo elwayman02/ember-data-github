@@ -11,5 +11,6 @@ export default DS.Model.extend({
   following: DS.attr('number'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
+  url: DS.attr('string'),
   githubRepositories: DS.hasMany('githubRepository', { async: true })
 });

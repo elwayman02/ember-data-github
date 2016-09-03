@@ -8,12 +8,14 @@ import UserFactory from './factories/user';
 import OrganizationFactory from './factories/organization';
 import RepositoryFactory from './factories/repository';
 import BranchFactory from './factories/branch';
+import ReleaseFactory from './factories/release';
 
 /* eslint-disable no-unused-vars */
 import assertGithubBranchOk from './custom-helpers/assert-github-branch-ok';
 import assertGithubOrganizationOk from './custom-helpers/assert-github-organization-ok';
 import assertGithubRepositoryOk from './custom-helpers/assert-github-repository-ok';
 import assertGithubUserOk from './custom-helpers/assert-github-user-ok';
+import assertGithubReleaseOk from './custom-helpers/assert-github-release-ok';
 /* eslint-enable no-unused-vars */
 
 const { merge, run } = Ember;
@@ -34,6 +36,7 @@ export default function startApp(attrs) {
   OrganizationFactory.defineOrganization();
   RepositoryFactory.defineRepository();
   BranchFactory.defineBranch();
+  ReleaseFactory.defineRelease();
 
   // Pretender doesn't work with fully qualified URLs
   GithubAdapter.reopen({

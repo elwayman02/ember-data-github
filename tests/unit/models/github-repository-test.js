@@ -5,7 +5,8 @@ moduleForModel('github-repository', 'Unit | Model | github repository', {
   needs: [
     'model:githubUser',
     'model:githubBranch',
-    'model:githubPull'
+    'model:githubPull',
+    'model:githubRelease'
   ]
 });
 
