@@ -1,7 +1,6 @@
 import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
-  // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     if (id === '#') {
       payload.repos_url = payload.repos_url.replace(`users/${payload.login}`, 'user');
@@ -28,5 +27,4 @@ export default GithubSerializer.extend({
     };
     return this._super(modelClass, normalizedHash, prop);
   }
-  // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 });
