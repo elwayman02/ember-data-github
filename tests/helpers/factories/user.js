@@ -19,6 +19,9 @@ export default {
       .attr('updated_at', SAMPLE_DATE)
       .sequence('repos_url', function (i) {
         return `https://api.github.com/users/user${i}/repos`;
+      })
+      .sequence('url', function (i) {
+        return `https://api.github.com/users/user${i}`;
       });
   }
 };

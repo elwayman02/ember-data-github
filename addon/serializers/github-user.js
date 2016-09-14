@@ -21,6 +21,7 @@ export default GithubSerializer.extend({
       following: resourceHash.following,
       createdAt: resourceHash.created_at,
       updatedAt: resourceHash.updated_at,
+      url: resourceHash.url,
       links: {
         githubRepositories: resourceHash.repos_url
       }

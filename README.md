@@ -1,4 +1,4 @@
-# Ember Data Github 
+# Ember Data Github
 
 [![Build Status](https://travis-ci.org/elwayman02/ember-data-github.svg?branch=master)](https://travis-ci.org/elwayman02/ember-data-github)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
@@ -22,6 +22,8 @@ this.get('store').findRecord('githubUser', '#'); // get the current user
 this.get('store').findRecord('githubUser', 'jimmay5469'); // get a user
 this.get('store').findRecord('githubRepository', 'jimmay5469/old-hash'); // get a repository
 this.get('store').findRecord('githubBranch, 'jimmay5469/old-hash/branches/master'); // get a branch
+this.get('store').queryRecord('githubRelease', { repo: 'jimmay5469/old-hash', releaseId: 1 }) // get a specific release
+this.get('store').query('githubRelease', { repo: 'jimmay5469/old-hash' }) // get a repo's releases
 ```
 
 ## Contributing

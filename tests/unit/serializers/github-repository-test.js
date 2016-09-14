@@ -6,7 +6,8 @@ moduleForModel('github-repository', 'Unit | Serializer | github repository', {
     'serializer:github-repository',
     'model:githubBranch',
     'model:githubUser',
-    'model:githubPull'
+    'model:githubPull',
+    'model:githubRelease'
   ]
 });
 
