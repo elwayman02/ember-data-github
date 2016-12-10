@@ -15,8 +15,8 @@ test('it builds the specified branch URL correctly', function(assert) {
   const host = adapter.get('host');
   const branch = 'jimmay5469/old-hash/branches/master';
 
-  assert.equal(adapter.buildURL('github-branch', branch), `${host}/repos/${branch}`);
+  assert.equal(adapter.buildURL('github-branch', branch, null, 'findRecord'), `${host}/repos/${branch}`);
 });
 
 // TODO: The index URL doesn't work correctly
-// TODO: This should probably be a query to avoid knowing too much about the path format
+// TODO: This should probably be a query to avoid knowing too much about the path format like releases
