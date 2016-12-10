@@ -5,7 +5,6 @@ moduleFor('adapter:github-release', 'Unit | Adapter | github release', {
   // needs: ['serializer:foo']
 });
 
-// Replace this with your real tests.
 test('it exists', function(assert) {
   let adapter = this.subject();
   assert.ok(adapter);
