@@ -33,7 +33,7 @@ authorizer and extending `ember-data-github`'s adapter for each model you use. S
 
 Once you have a token, the authorizer will look like
 ```js
-# app/authorizers/github.js
+// app/authorizers/github.js
 
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authorizers/base';
@@ -52,7 +52,7 @@ header into the API requests using ESA mechanisms.
 
 An extended adapter for `github-user` would look like
 ```js
-# app/adapters/github-user.js
+// app/adapters/github-user.js
 
 import GitHubUserAdapter from 'ember-data-github/adapters/github-user';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
@@ -68,8 +68,8 @@ The following examples show how to retrieve each supported GitHub entity as you 
 this.get('store').findRecord('githubUser', '#'); // get the current user
 this.get('store').findRecord('githubUser', 'jimmay5469'); // get a user
 this.get('store').findRecord('githubRepository', 'jimmay5469/old-hash'); // get a repository
-this.get('store').findRecord('githubBranch, 'jimmay5469/old-hash/branches/master'); // get a branch
-this.get('store').queryRecord('githubRelease', { repo: 'jimmay5469/old-hash', releaseId: 1 }) // get a specific release
+this.get('store').findRecord('githubBranch', 'jimmay5469/old-hash/branches/master'); // get a branch
+this.get('store').queryRecord('githubRelease', { repo: 'jimmay5469/old-hash', releaseId: 1 }); // get a specific release
 this.get('store').query('githubRelease', { repo: 'jimmay5469/old-hash' }) // get a repo's releases
 ```
 
