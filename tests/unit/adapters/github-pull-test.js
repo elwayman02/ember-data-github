@@ -1,26 +1,27 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('adapter:github-organization', 'Unit | Adapter | github organization', {
+moduleFor('adapter:github-pull', 'Unit | Adapter | github pull', {
   // Specify the other units that are required for this test.
   // needs: ['serializer:foo']
 });
 
-test('it exists', function (assert) {
+test('it exists', function(assert) {
   let adapter = this.subject();
   assert.ok(adapter);
 });
+
 
 test('it builds the index URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
 
-  assert.equal(adapter.buildURL('organizations', null, null), `${host}/orgs`);
+  assert.equal(adapter.buildURL('pulls'), `${host}/pulls`);
 });
 
-test('it build the specified org URL correctly', function(assert) {
+test('it builds the specific pull URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
-  const org = 'ember';
+  const id = 3;
 
-  assert.equal(adapter.buildURL('organizations', org, null), `${host}/orgs/${org}`);
+  assert.equal(adapter.buildURL('pulls', id), `${host}/pulls/${id}`);
 });
