@@ -22,5 +22,5 @@ test('it builds the specified repo URL correctly', function(assert) {
   const host = adapter.get('host');
 
   const repo = 'elwayman02/ember-data-github';
-  assert.equal(adapter.buildURL('github-repository', repo, null), `${host}/repos/${repo}`);
+  assert.equal(adapter.buildURL('github-repository', repo, null, 'findRecord'), `${host}/repos/${repo}`);
 });
