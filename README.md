@@ -14,10 +14,57 @@ ember install ember-data-github
 
 ## Usage
 
-In order to use OAuth endpoints you must set the property named `githubAccessToken` on `github-session` service with the currently logged in user's GitHub access token.
+You need to choose how you wish to authenticate your GitHub requests using OAuth. `ember-data-github` provides a simple
+and direct mechanism that is specific to itself. Alternatively, you can use a more general authentication framework like
+`ember-simple-auth`.
 
-Examples:
+### Authenticating Directly
+
+If you already have a token to use the OAuth endpoints, such as a *Personal access token*, you must set the property
+named `githubAccessToken` on `github-session` service with the currently logged in user's GitHub access token.
+
+### Authenticating with `ember-simple-auth`
+
+If you are using [ember-simple-auth](http://ember-simple-auth.com/) (ESA) to authenticate, perhaps with
+[torii](http://vestorly.github.io/torii) and ESA's `torii-provider`, you can authenticate by creating a github
+authorizer and extending `ember-data-github`'s adapter for each model you use. See the respective addon docs and
+[GitHub's OAuth docs](https://developer.github.com/v3/oauth/) to set it up.
+
+
+Once you have a token, the authorizer will look like
+```js
+// app/authorizers/github.js
+
+import Ember from 'ember';
+import Base from 'ember-simple-auth/authorizers/base';
+
+export default Base.extend({
+  session: Ember.inject.service(),
+  authorize(sessionData, block) {
+    if (this.get('session.isAuthenticated') && !Ember.isEmpty(sessionData.access_token)) {
+      block('Authorization', `token ${sessionData.access_token}`);
+    }
+  }
+});
 ```
+assuming `access_token` is the name of the property containing the token. This automatically injects the `Authorization`
+header into the API requests using ESA mechanisms.
+
+An extended adapter for `github-user` would look like
+```js
+// app/adapters/github-user.js
+
+import GitHubUserAdapter from 'ember-data-github/adapters/github-user';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
+
+export default GitHubUserAdapter.extend(DataAdapterMixin, {
+  authorizer: 'authorizer:github'
+});
+```
+
+### Retrieving GitHub Data
+The following examples show how to retrieve each supported GitHub entity as you might use it in your `model` hook.
+```js
 this.get('store').findRecord('github-user', '#'); // get the current user
 this.get('store').findRecord('github-user', 'jimmay5469'); // get a user
 this.get('store').findRecord('github-repository', 'jimmay5469/old-hash'); // get a repository
