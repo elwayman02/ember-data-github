@@ -5,8 +5,18 @@ moduleFor('adapter:github-branch', 'Unit | Adapter | github branch', {
   // needs: ['serializer:foo']
 });
 
-// Replace this with your real tests.
 test('it exists', function (assert) {
   let adapter = this.subject();
   assert.ok(adapter);
 });
+
+test('it builds the specified branch URL correctly', function(assert) {
+  let adapter = this.subject();
+  const host = adapter.get('host');
+  const branch = 'jimmay5469/old-hash/branches/master';
+
+  assert.equal(adapter.buildURL('github-branch', branch), `${host}/repos/${branch}`);
+});
+
+// TODO: The index URL doesn't work correctly
+// TODO: This should probably be a query to avoid knowing too much about the path format
