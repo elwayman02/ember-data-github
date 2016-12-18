@@ -19,8 +19,7 @@ export default RESTAdapter.extend({
   }),
 
   pathForType(type) {
-    return Ember.String.camelize(Ember.String.pluralize(type.replace('github', '')))
-      .replace('organizations', 'orgs');
+    return Ember.String.camelize(Ember.String.pluralize(type.replace('github', '')));
   }
 
 });
