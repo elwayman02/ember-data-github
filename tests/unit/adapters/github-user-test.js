@@ -14,7 +14,7 @@ test('it builds the current user URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
 
-  assert.equal(adapter.buildURL('github-user', '#', null), `${host}/user`);
+  assert.equal(adapter.buildURL('github-user', '#', null, 'findRecord'), `${host}/user`);
 });
 
 test('it builds specified user URLs correctly', function(assert) {
@@ -22,5 +22,5 @@ test('it builds specified user URLs correctly', function(assert) {
   const host = adapter.get('host');
   const user = 'elwayman02';
 
-  assert.equal(adapter.buildURL('github-user', user, null), `${host}/users/${user}`);
+  assert.equal(adapter.buildURL('github-user', user, null, 'findRecord'), `${host}/users/${user}`);
 });
