@@ -15,6 +15,7 @@ export default GithubSerializer.extend({
       name: resourceHash.name,
       type: resourceHash.type,
       avatarUrl: resourceHash.avatar_url,
+      htmlUrl: resourceHash.html_url,
       publicRepos: resourceHash.public_repos,
       publicGists: resourceHash.public_gists,
       followers: resourceHash.followers,
