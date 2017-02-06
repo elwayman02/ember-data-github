@@ -5,6 +5,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   type: DS.attr('string'),
   avatarUrl: DS.attr('string'),
+  htmlUrl: DS.attr('string'),
   publicRepos: DS.attr('number'),
   publicGists: DS.attr('number'),
   followers: DS.attr('number'),
