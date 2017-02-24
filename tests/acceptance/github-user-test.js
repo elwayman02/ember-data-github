@@ -34,7 +34,7 @@ test('finding a user without authorization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubUser', 'User1').then((user) => {
-      assertGithubUserOk(assert, user);
+      assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
@@ -50,7 +50,7 @@ test('finding a user', function (assert) {
 
   return run(() => {
     return store.findRecord('githubUser', 'user1').then((user) => {
-      assertGithubUserOk(assert, user);
+      assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
@@ -71,7 +71,7 @@ test('finding all users', function (assert) {
   return run(() => {
     return store.findAll('githubUser').then((users) => {
       assert.equal(users.get('length'), 2);
-      assertGithubUserOk(assert, users.toArray()[0]);
+      assert.githubUserOk(users.toArray()[0]);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });

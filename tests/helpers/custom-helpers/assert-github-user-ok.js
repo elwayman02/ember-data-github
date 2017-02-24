@@ -1,19 +1,39 @@
+import QUnit from 'qunit';
 import Ember from 'ember';
+
+QUnit.assert.githubUserOk = function(user, message) {
+  let allDefined = true;
+  let undefinedKeys = [];
+  [
+    'id',
+    'login',
+    'name',
+    'type',
+    'avatarUrl',
+    'publicRepos',
+    'publicGists',
+    'followers',
+    'following',
+    'createdAt',
+    'updatedAt',
+    'url'
+  ].forEach(key => {
+    if( user.get(key) === undefined ) {
+      allDefined = false;
+      undefinedKeys.push(key);
+    }
+  });
+  this.pushResult({
+    result: allDefined,
+    actual: allDefined,
+    expected: true,
+    message: `${message}: ${undefinedKeys.join(',')}`
+  });
+};
 
 export default Ember.Test.registerHelper(
   'assertGithubUserOk',
   function (app, assert, user) {
-    assert.ok(user.get('id'));
-    assert.ok(user.get('login'));
-    assert.ok(user.get('name'));
-    assert.ok(user.get('type'));
-    assert.ok(user.get('avatarUrl'));
-    assert.ok(user.get('publicRepos'));
-    assert.ok(user.get('publicGists'));
-    assert.ok(user.get('followers'));
-    assert.ok(user.get('following'));
-    assert.ok(user.get('createdAt'));
-    assert.ok(user.get('updatedAt'));
-    assert.ok(user.get('url'));
+    assert.githubUserOk(user);
   }
 );

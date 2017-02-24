@@ -86,7 +86,7 @@ test('finding all releases', function (assert) {
 });
 
 test('getting a releases\' author', function (assert) {
-  assert.expect(15);
+  assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1/releases/1', () => {
@@ -99,7 +99,7 @@ test('getting a releases\' author', function (assert) {
   return run(() => {
     return store.queryRecord('githubRelease', { repo: 'user1/repository1', releaseId: '1' }).then((release) => {
       return release.get('user').then(function (user) {
-        assertGithubUserOk(assert, user);
+        assert.githubUserOk(user);
         assert.equal(store.peekAll('githubUser').get('length'), 1, 'loads 1 user');
         assert.equal(server.handledRequests.length, 2, 'handles 2 requests');
         assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');

@@ -85,7 +85,7 @@ test('finding all repositories', function (assert) {
 });
 
 test('getting a repository\'s owner', function (assert) {
-  assert.expect(14);
+  assert.expect(3);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
@@ -98,7 +98,7 @@ test('getting a repository\'s owner', function (assert) {
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
       return repository.get('owner').then(function (owner) {
-        assertGithubUserOk(assert, owner);
+        assert.githubUserOk(owner);
         assert.equal(server.handledRequests.length, 2, 'handles 2 requests');
         assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
