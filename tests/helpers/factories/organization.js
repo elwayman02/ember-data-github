@@ -1,3 +1,4 @@
+/* global Factory */
 export default {
   defineOrganization() {
     Factory.define('organization').sequence('id')

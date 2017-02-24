@@ -3,7 +3,6 @@ module.exports = {
     'embertest': true
   },
   globals: {
-    'Factory': false,
     'assertGithubUserOk':false,
     'assertGithubRepositoryOk': false,
     'assertGithubBranchOk': false,

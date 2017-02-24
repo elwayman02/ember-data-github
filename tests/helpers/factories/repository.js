@@ -1,3 +1,4 @@
+/* global Factory */
 let sampleDate = new Date().toISOString();
 export default {
   defineRepository() {
