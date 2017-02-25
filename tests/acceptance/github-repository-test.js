@@ -157,7 +157,7 @@ test('finding a repository\'s branches', function (assert) {
 
 
 test('finding a repository\'s releases', function (assert) {
-  assert.expect(18);
+  assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
@@ -175,7 +175,7 @@ test('finding a repository\'s releases', function (assert) {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
       return repository.get('releases').then(function (releases) {
         assert.equal(releases.get('length'), 2, 'loads 2 releases');
-        assertGithubReleaseOk(assert, releases.toArray()[0]);
+        assert.githubReleaseOk(releases.toArray()[0]);
         assert.equal(server.handledRequests.length, 2, 'handles 2 requests');
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
