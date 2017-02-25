@@ -1,3 +1,4 @@
+/* global Factory */
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import startApp from 'dummy/tests/helpers/start-app';
@@ -33,7 +34,7 @@ moduleForAcceptance('Acceptance | current github user', {
 test('finding current user', function (assert) {
   return run(() => {
     return store.findRecord('githubUser', '#').then((user) => {
-      assertGithubUserOk(assert, user);
+      assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
@@ -54,7 +55,7 @@ test(`finding current user's repositories`, function (assert) {
     return store.findRecord('githubUser', '#').then((user) => {
       return user.get('githubRepositories').then((repositories) => {
         assert.equal(repositories.get('length'), 2);
-        assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+        assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
       });

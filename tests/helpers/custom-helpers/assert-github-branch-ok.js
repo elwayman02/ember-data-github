@@ -1,9 +1,15 @@
+import QUnit from 'qunit';
 import Ember from 'ember';
+import assertionBuilder from '../utils/defined-attribute-assertion-builder';
+
+QUnit.assert.githubBranchOk = assertionBuilder([
+  'id',
+  'name'
+]);
 
 export default Ember.Test.registerHelper(
   'assertGithubBranchOk',
-  function (app, assert, repository) {
-    assert.ok(repository.get('id'));
-    assert.ok(repository.get('name'));
+  function (app, assert, branch) {
+    assert.githubBranchOk(branch);
   }
 );

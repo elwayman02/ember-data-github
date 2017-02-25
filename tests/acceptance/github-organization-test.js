@@ -1,3 +1,4 @@
+/* global Factory */
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import startApp from 'dummy/tests/helpers/start-app';
@@ -33,7 +34,7 @@ test('finding an organization without authorization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubOrganization', 'Organization1').then((organization) => {
-      assertGithubOrganizationOk(assert, organization);
+      assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
@@ -49,7 +50,7 @@ test('finding an organization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubOrganization', 'organization1').then((organization) => {
-      assertGithubOrganizationOk(assert, organization);
+      assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
@@ -74,7 +75,7 @@ test(`finding an organization's repositories`, function (assert) {
     return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       return organization.get('githubRepositories').then(function (repositories) {
         assert.equal(repositories.get('length'), 2);
-        assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+        assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
       });

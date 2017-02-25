@@ -1,3 +1,4 @@
+/* global Factory */
 const SAMPLE_DATE = new Date().toISOString();
 
 export default {

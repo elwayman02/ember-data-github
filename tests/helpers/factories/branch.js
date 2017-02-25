@@ -1,3 +1,4 @@
+/* global Factory */
 export default {
   defineBranch() {
     Factory.define('branch')

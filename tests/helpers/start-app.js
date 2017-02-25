@@ -10,13 +10,11 @@ import RepositoryFactory from './factories/repository';
 import BranchFactory from './factories/branch';
 import ReleaseFactory from './factories/release';
 
-/* eslint-disable no-unused-vars */
-import assertGithubBranchOk from './custom-helpers/assert-github-branch-ok';
-import assertGithubOrganizationOk from './custom-helpers/assert-github-organization-ok';
-import assertGithubRepositoryOk from './custom-helpers/assert-github-repository-ok';
-import assertGithubUserOk from './custom-helpers/assert-github-user-ok';
-import assertGithubReleaseOk from './custom-helpers/assert-github-release-ok';
-/* eslint-enable no-unused-vars */
+import './custom-helpers/assert-github-branch-ok';
+import './custom-helpers/assert-github-organization-ok';
+import './custom-helpers/assert-github-repository-ok';
+import './custom-helpers/assert-github-user-ok';
+import './custom-helpers/assert-github-release-ok';
 
 const { merge, run } = Ember;
 

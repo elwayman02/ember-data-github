@@ -1,3 +1,4 @@
+/* global Factory */
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import startApp from 'dummy/tests/helpers/start-app';
@@ -33,7 +34,7 @@ test('finding a branch without authorization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubBranch', 'User1/Repository1/branches/Branch1').then((branch) => {
-      assertGithubBranchOk(assert, branch);
+      assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
@@ -49,7 +50,7 @@ test('finding a branch', function (assert) {
 
   return run(() => {
     return store.findRecord('githubBranch', 'user1/repository1/branches/branch1').then((branch) => {
-      assertGithubBranchOk(assert, branch);
+      assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
