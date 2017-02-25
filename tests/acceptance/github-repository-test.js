@@ -107,7 +107,7 @@ test('getting a repository\'s owner', function (assert) {
 });
 
 test('getting a repository\'s default branch', function (assert) {
-  assert.expect(4);
+  assert.expect(3);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
@@ -120,7 +120,7 @@ test('getting a repository\'s default branch', function (assert) {
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
       return repository.get('defaultBranch').then(function (branch) {
-        assertGithubBranchOk(assert, branch);
+        assert.githubBranchOk(branch);
         assert.equal(server.handledRequests.length, 2, 'handles 2 requests');
         assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
@@ -129,7 +129,7 @@ test('getting a repository\'s default branch', function (assert) {
 });
 
 test('finding a repository\'s branches', function (assert) {
-  assert.expect(5);
+  assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
@@ -147,7 +147,7 @@ test('finding a repository\'s branches', function (assert) {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
       return repository.get('branches').then(function (branches) {
         assert.equal(branches.get('length'), 2, 'loads 2 branches');
-        assertGithubBranchOk(assert, branches.toArray()[0]);
+        assert.githubBranchOk(branches.toArray()[0]);
         assert.equal(server.handledRequests.length, 2, 'handles 2 requests');
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
