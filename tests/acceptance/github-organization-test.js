@@ -34,7 +34,7 @@ test('finding an organization without authorization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubOrganization', 'Organization1').then((organization) => {
-      assertGithubOrganizationOk(assert, organization);
+      assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
@@ -50,7 +50,7 @@ test('finding an organization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubOrganization', 'organization1').then((organization) => {
-      assertGithubOrganizationOk(assert, organization);
+      assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
