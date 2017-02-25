@@ -75,7 +75,7 @@ test(`finding an organization's repositories`, function (assert) {
     return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       return organization.get('githubRepositories').then(function (repositories) {
         assert.equal(repositories.get('length'), 2);
-        assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+        assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
       });

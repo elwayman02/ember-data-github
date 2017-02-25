@@ -95,7 +95,7 @@ test(`finding a user's repositories`, function (assert) {
     return store.findRecord('githubUser', 'user1').then((user) => {
       return user.get('githubRepositories').then((repositories) => {
         assert.equal(repositories.get('length'), 2);
-        assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+        assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.handledRequests.length, 2);
         assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
       });

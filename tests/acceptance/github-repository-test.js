@@ -28,7 +28,7 @@ moduleForAcceptance('Acceptance | github repository', {
 });
 
 test('finding a repository without authorization', function (assert) {
-  assert.expect(12);
+  assert.expect(4);
 
   server.get('/repos/User1/Repository1', () => {
     return [200, {}, Factory.build('repository')];
@@ -36,7 +36,7 @@ test('finding a repository without authorization', function (assert) {
 
   return run(() => {
     return store.findRecord('githubRepository', 'User1/Repository1').then((repository) => {
-      assertGithubRepositoryOk(assert, repository);
+      assert.githubRepositoryOk(repository);
       assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
       assert.equal(server.handledRequests.length, 1, 'handles 1 request');
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined, 'has no authorization token');
@@ -45,7 +45,7 @@ test('finding a repository without authorization', function (assert) {
 });
 
 test('finding a repository', function (assert) {
-  assert.expect(12);
+  assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repos/user1/repository1', () => {
@@ -54,7 +54,7 @@ test('finding a repository', function (assert) {
 
   return run(() => {
     return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
-      assertGithubRepositoryOk(assert, repository);
+      assert.githubRepositoryOk(repository);
       assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
       assert.equal(server.handledRequests.length, 1, 'handles 1 request');
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
@@ -63,7 +63,7 @@ test('finding a repository', function (assert) {
 });
 
 test('finding all repositories', function (assert) {
-  assert.expect(12);
+  assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/repositories', () => {
@@ -77,7 +77,7 @@ test('finding all repositories', function (assert) {
   return run(() => {
     return store.findAll('githubRepository').then(function (repositories) {
       assert.equal(repositories.get('length'), 2, 'loads 2 repositories');
-      assertGithubRepositoryOk(assert, repositories.toArray()[0]);
+      assert.githubRepositoryOk(repositories.toArray()[0]);
       assert.equal(server.handledRequests.length, 1, 'handles 1 request');
       assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
     });
