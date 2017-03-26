@@ -15,7 +15,6 @@
 /libpeerconnection.log
 npm-debug.log*
 testem.log
-
-# JetBrains files
-.idea/
-*.iml
+.node_modules.ember-try/
+bower.json.ember-try
+package.json.ember-try
