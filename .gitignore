@@ -15,7 +15,3 @@
 /libpeerconnection.log
 npm-debug.log*
 testem.log
-
-# JetBrains files
-.idea/
-*.iml

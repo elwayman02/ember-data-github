@@ -87,7 +87,7 @@ this.get('store').query('github-release', { repo: 'jimmay5469/old-hash' }) // ge
 ### Running
 
 * `ember serve`
-* Visit your app at http://localhost:4200.
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Running Tests
 
