@@ -7,4 +7,10 @@
 <div>Last Updated: {{gist.updatedAt}}</div>
 <div>
   Files:
+  {{#each gist.files as |file|}}
+    <div class="gist-file">
+      <h3>{{file.name}}</h3>
+      <div>Type: {{file.type}}</div>
+    </div>
+  {{/each}}
 </div>
