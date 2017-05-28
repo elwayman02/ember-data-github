@@ -9,12 +9,14 @@ import OrganizationFactory from './factories/organization';
 import RepositoryFactory from './factories/repository';
 import BranchFactory from './factories/branch';
 import ReleaseFactory from './factories/release';
+import BlobFactory from './factories/blob';
 
 import './custom-helpers/assert-github-branch-ok';
 import './custom-helpers/assert-github-organization-ok';
 import './custom-helpers/assert-github-repository-ok';
 import './custom-helpers/assert-github-user-ok';
 import './custom-helpers/assert-github-release-ok';
+import './custom-helpers/assert-github-blob-ok';
 
 const { merge, run } = Ember;
 
@@ -35,6 +37,7 @@ export default function startApp(attrs) {
   RepositoryFactory.defineRepository();
   BranchFactory.defineBranch();
   ReleaseFactory.defineRelease();
+  BlobFactory.defineBlob();
 
   // Pretender doesn't work with fully qualified URLs
   GithubAdapter.reopen({
