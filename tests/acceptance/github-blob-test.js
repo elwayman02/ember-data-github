@@ -34,8 +34,7 @@ test('retrieving a blob', function(assert) {
 
   return run(() => {
     return store.queryRecord('github-blob', {
-      user: 'user1',
-      repo: 'repo1',
+      repo: 'user1/repo1',
       sha: '1'
     }).then(blob => {
       assert.githubBlobOk(blob);

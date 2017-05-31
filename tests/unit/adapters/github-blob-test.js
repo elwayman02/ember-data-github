@@ -12,14 +12,12 @@ test('it exists', function(assert) {
 test('it builds the URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
-  const user = 'jimmay5469';
-  const repo = 'old-hash';
+  const repo = 'jimmay5469/old-hash';
   const sha = '219985c2289f78f0a652c317ec69c2bc355ee5e9';
   let query = {
-    user,
     repo,
     sha
   };
 
-  assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${user}/${repo}/git/blobs/${sha}`);
+  assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/blobs/${sha}`);
 });
