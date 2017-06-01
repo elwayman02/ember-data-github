@@ -1,3 +1,38 @@
+/* global Factory */
+
+export default {
+  defineTree() {
+    Factory.define('tree')
+      .sequence('sha')
+      .attr('url', ['sha'], function(sha) {
+        return `https://api.github.com/user1/repository1/git/trees/${sha}`;
+      })
+      .attr('tree', ['sha'], function(sha) {
+        let tree = [];
+        let fileSha = sha + 100;
+        tree.push({
+          path: "file.js",
+          mode: "100644",
+          type: "blob",
+          sha: `${fileSha}`,
+          size: 17,
+          url: `https://api.github.com/repos/user1/repository1/git/blobs/${fileSha}`
+        });
+        let treeSha = fileSha + 1;
+        tree.push({
+          path: "config",
+          mode: "040000",
+          type: "tree",
+          sha: `${treeSha}`,
+          url: `https://api.github.com/user1/repository1/git/trees/${treeSha}`
+        });
+
+        return tree;
+      })
+      .attr('truncated', false);
+  }
+}
+
 /*
 {
   "sha": "96e2b883219731e82b5a23e67c61c2ac6a3a2a4f",
