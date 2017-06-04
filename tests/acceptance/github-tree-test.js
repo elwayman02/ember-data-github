@@ -34,7 +34,7 @@ test('retrieving a tree', function(assert) {
 
   return run(() => {
     return store.queryRecord('github-tree', {
-      repo: 'user1/repository1',
+      repo: 'user1/repo1',
       sha: '1'
     }).then(tree => {
       assert.githubTreeOk(tree);

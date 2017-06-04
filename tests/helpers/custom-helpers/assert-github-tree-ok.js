@@ -6,7 +6,10 @@ QUnit.assert.githubTreeOk = assertionBuilder([
   'id',
   'sha',
   'url',
-  'tree',
+  'files',
+  'directories',
+  'blobs',
+  'trees',
   'truncated'
 ]);
 
