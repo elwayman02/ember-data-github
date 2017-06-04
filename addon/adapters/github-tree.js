@@ -7,6 +7,10 @@ export default GithubAdapter.extend({
     delete query.repo;
     delete query.sha;
 
+    if (query.recursive) {
+      query.recursive = 1;
+    }
+
     return `${this.get('host')}/repos/${repo}/git/trees/${sha}`;
   }
 });

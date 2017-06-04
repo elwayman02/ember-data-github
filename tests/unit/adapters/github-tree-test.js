@@ -20,3 +20,19 @@ test('it builds the URL correctly', function(assert) {
 
   assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
 });
+
+test('it builds the URL correctly with the recursive query', function(assert) {
+  let adapter = this.subject();
+  const host = adapter.get('host');
+  const repo = 'jimmay5469/old-hash';
+  const sha = '219985c2289f78f0a652c317ec69c2bc355ee5e9';
+  const recursive = true;
+  let query = {
+    repo,
+    sha,
+    recursive
+  };
+
+  // NOTE: Query params are handles separately from the URL, so are not part of the expected result.
+  assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
+});
