@@ -1,6 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('adapter:github-tree', 'Unit | Adapter | github tree', {
+  needs: ['service:github-session']
 });
 
 test('it exists', function(assert) {
@@ -18,7 +19,7 @@ test('it builds the URL correctly', function(assert) {
     sha
   };
 
-  assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
+  assert.equal(adapter.buildURL('github-tree', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
 });
 
 test('it builds the URL correctly with the recursive query', function(assert) {
@@ -33,6 +34,6 @@ test('it builds the URL correctly with the recursive query', function(assert) {
     recursive
   };
 
-  // NOTE: Query params are handles separately from the URL, so are not part of the expected result.
-  assert.equal(adapter.buildURL('github-blob', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
+  // NOTE: Query params are handled separately from the URL, so are not part of the expected result.
+  assert.equal(adapter.buildURL('github-tree', null, null, 'queryRecord', query), `${host}/repos/${repo}/git/trees/${sha}`);
 });

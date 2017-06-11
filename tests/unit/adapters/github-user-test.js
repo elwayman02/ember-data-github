@@ -1,8 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('adapter:github-user', 'Unit | Adapter | github user', {
-  // Specify the other units that are required for this test.
-  // needs: ['serializer:foo']
+  needs: ['service:github-session']
 });
 
 test('it exists', function (assert) {
