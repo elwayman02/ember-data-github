@@ -2,29 +2,30 @@ import GithubSerializer from './github';
 
 export default GithubSerializer.extend({
   normalize(modelClass, resourceHash, prop) {
+    let blobItems = resourceHash.tree
+      .filter(item => item.type === 'blob');
+    let treeItems = resourceHash.tree
+      .filter(item => item.type === 'tree');
+
     let normalizedHash = {
       id: resourceHash.sha,
       sha: resourceHash.sha,
       url: resourceHash.url,
-      files: resourceHash.tree
-        .filter(item => item.type === 'blob')
+      files: blobItems
         .reduce((files, blob) => {
           files[blob.path] = blob.sha;
           return files;
         }, {}),
-      directories: resourceHash.tree
-        .filter(item => item.type === 'tree')
+      directories: treeItems
         .reduce((files, tree) => {
           files[tree.path] = tree.sha;
           return files;
         }, {}),
       truncated: resourceHash.truncated,
       links: {
-        blobs: resourceHash.tree
-          .filter(item => item.type === 'blob')
+        blobs: blobItems
           .map(blob => blob.url),
-        trees: resourceHash.tree
-          .filter(item => item.type === 'tree')
+        trees: treeItems
           .map(tree => tree.url)
       }
     };
