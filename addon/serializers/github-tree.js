@@ -11,22 +11,18 @@ export default GithubSerializer.extend({
       id: resourceHash.sha,
       sha: resourceHash.sha,
       url: resourceHash.url,
-      files: blobItems
-        .reduce((files, blob) => {
+      files: blobItems.reduce((files, blob) => {
           files[blob.path] = blob.sha;
           return files;
         }, {}),
-      directories: treeItems
-        .reduce((files, tree) => {
+      directories: treeItems.reduce((files, tree) => {
           files[tree.path] = tree.sha;
           return files;
         }, {}),
       truncated: resourceHash.truncated,
       links: {
-        blobs: blobItems
-          .map(blob => blob.url),
-        trees: treeItems
-          .map(tree => tree.url)
+        blobs: blobItems.map(blob => blob.url),
+        trees: treeItems.map(tree => tree.url)
       }
     };
     return this._super(modelClass, normalizedHash, prop);
