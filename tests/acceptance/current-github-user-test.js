@@ -1,13 +1,11 @@
 /* global Factory */
+import { run } from '@ember/runloop';
+
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-import startApp from 'dummy/tests/helpers/start-app';
 import Pretender from 'pretender';
-import Ember from 'ember';
 
-const { run } = Ember;
-
-let server, app, container, store;
+let server, container, store;
 
 moduleForAcceptance('Acceptance | current github user', {
   beforeEach() {
@@ -15,8 +13,7 @@ moduleForAcceptance('Acceptance | current github user', {
     server.prepareBody = function (body) {
       return JSON.stringify(body);
     };
-    app = startApp();
-    container = app.__container__;
+    container = this.application.__container__;
     store = run(container, 'lookup', 'service:store');
     container.lookup('service:github-session').set('githubAccessToken', 'abc123');
     server.get('/user', () => {
@@ -26,8 +23,6 @@ moduleForAcceptance('Acceptance | current github user', {
 
   afterEach() {
     server.shutdown();
-    run(app, app.destroy);
-    Ember.BOOTED = false;
   }
 });
 
@@ -62,4 +57,3 @@ test(`finding current user's repositories`, function (assert) {
     });
   });
 });
-

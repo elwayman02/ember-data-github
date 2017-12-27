@@ -1,5 +1,5 @@
+import { registerHelper } from '@ember/test';
 import QUnit from 'qunit';
-import Ember from 'ember';
 import assertionBuilder from '../utils/defined-attribute-assertion-builder';
 
 QUnit.assert.githubRepositoryOk = assertionBuilder([
@@ -14,7 +14,7 @@ QUnit.assert.githubRepositoryOk = assertionBuilder([
   'pushedAt'
 ]);
 
-export default Ember.Test.registerHelper(
+export default registerHelper(
   'assertGithubRepositoryOk',
   function (app, assert, repository) {
     assert.githubRepositoryOk(repository);

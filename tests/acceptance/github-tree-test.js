@@ -1,13 +1,11 @@
 /* global Factory */
+import { run } from '@ember/runloop';
+
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-import startApp from 'dummy/tests/helpers/start-app';
 import Pretender from 'pretender';
-import Ember from 'ember';
 
-const { run } = Ember;
-
-let server, app, container, store;
+let server, container, store;
 
 moduleForAcceptance('Acceptance | github tree', {
   beforeEach() {
@@ -15,15 +13,12 @@ moduleForAcceptance('Acceptance | github tree', {
     server.prepareBody = function (body) {
       return JSON.stringify(body);
     };
-    app = startApp();
-    container = app.__container__;
+    container = this.application.__container__;
     store = run(container, 'lookup', 'service:store');
   },
 
   afterEach() {
     server.shutdown();
-    run(app, app.destroy);
-    Ember.BOOTED = false;
   }
 });
 

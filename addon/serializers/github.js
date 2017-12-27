@@ -1,7 +1,8 @@
+import { isArray } from '@ember/array';
+import { get } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { pluralize } from 'ember-inflector';
 import DS from 'ember-data';
-import Ember from 'ember';
-
-const { isArray, String:Str, get, isNone } = Ember;
 
 export default DS.RESTSerializer.extend({
 
@@ -10,7 +11,7 @@ export default DS.RESTSerializer.extend({
     let wrappedPayload = {};
     let fieldName = primaryModelClass.modelName;
     if (isArray(payload)) {
-      fieldName = Str.pluralize(fieldName);
+      fieldName = pluralize(fieldName);
     }
     wrappedPayload[fieldName] = payload;
     return this._super(store, primaryModelClass, wrappedPayload, id, requestType);
@@ -25,7 +26,7 @@ export default DS.RESTSerializer.extend({
   //   }
   //
   extractMeta(store, modelClass, payload) {
-    const links = get(payload, `${Str.pluralize(modelClass.modelName)}.links`);
+    const links = get(payload, `${pluralize(modelClass.modelName)}.links`);
 
     if (isNone(links)) {
       return;
