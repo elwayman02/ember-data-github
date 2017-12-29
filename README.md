@@ -82,7 +82,7 @@ this.get('store').queryRecord('github-blob', { repo: 'jimmay5469/old-hash', sha:
 
 * `git clone git@github.com:elwayman02/ember-data-github.git`
 * `cd ember-data-github`
-* `npm install`
+* `yarn`
 * `bower install`
 
 ### Running
