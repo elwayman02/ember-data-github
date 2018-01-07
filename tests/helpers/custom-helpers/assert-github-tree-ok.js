@@ -1,5 +1,5 @@
+import { registerHelper } from '@ember/test';
 import QUnit from 'qunit';
-import Ember from 'ember';
 import assertionBuilder from '../utils/defined-attribute-assertion-builder';
 
 QUnit.assert.githubTreeOk = assertionBuilder([
@@ -13,7 +13,7 @@ QUnit.assert.githubTreeOk = assertionBuilder([
   'truncated'
 ]);
 
-export default Ember.Test.registerHelper(
+export default registerHelper(
   'assertGithubTreeOk',
   function (app, assert, tree) {
     assert.githubTreeOk(tree);

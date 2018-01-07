@@ -1,12 +1,15 @@
+import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
+import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
 import DS from 'ember-data';
-import Ember from 'ember';
+import { pluralize } from 'ember-inflector';
 
 const { RESTAdapter } = DS;
-const { computed, inject, isNone } = Ember;
 
 export default RESTAdapter.extend({
 
-  session: inject.service('github-session'),
+  session: service('github-session'),
 
   host: 'https://api.github.com',
 
@@ -19,7 +22,7 @@ export default RESTAdapter.extend({
   }),
 
   pathForType(type) {
-    return Ember.String.camelize(Ember.String.pluralize(type.replace('github', '')));
+    return camelize(pluralize(type.replace('github', '')));
   },
 
   // Parse Link response header out into an object like:
@@ -42,6 +45,7 @@ export default RESTAdapter.extend({
 
       try {
         [, url] = url.match(/<(.+)>/);
+        //eslint-disable-next-line no-useless-escape
         [, rel] = rel.match(/rel=\"(.+)\"/);
       } catch(error) {
         // Any error in parsing should not cause the application to error

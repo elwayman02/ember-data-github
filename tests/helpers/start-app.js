@@ -1,6 +1,7 @@
-import Ember from 'ember';
 import Application from '../../app';
 import config from '../../config/environment';
+import { merge } from '@ember/polyfills';
+import { run } from '@ember/runloop';
 
 import GithubAdapter from 'ember-data-github/adapters/github';
 
@@ -20,36 +21,33 @@ import './custom-helpers/assert-github-release-ok';
 import './custom-helpers/assert-github-blob-ok';
 import './custom-helpers/assert-github-tree-ok';
 
-const { merge, run } = Ember;
-
 export default function startApp(attrs) {
-  let application;
-
   let attributes = merge({}, config.APP);
+  attributes.autoboot = true;
   attributes = merge(attributes, attrs); // use defaults, but you can override;
 
-  run(() => {
-    application = Application.create(attributes);
+  return run(() => {
+    let application = Application.create(attributes);
     application.setupForTesting();
     application.injectTestHelpers();
+
+    UserFactory.defineUser();
+    OrganizationFactory.defineOrganization();
+    RepositoryFactory.defineRepository();
+    BranchFactory.defineBranch();
+    ReleaseFactory.defineRelease();
+    BlobFactory.defineBlob();
+    TreeFactory.defineTree();
+
+    // Pretender doesn't work with fully qualified URLs
+    GithubAdapter.reopen({
+      // Caution: overriding ember-data private api
+      ajax(url, type, options) {
+        url = url.replace('https://api.github.com', '');
+        return this._super(url, type, options);
+      }
+    });
+
+    return application;
   });
-
-  UserFactory.defineUser();
-  OrganizationFactory.defineOrganization();
-  RepositoryFactory.defineRepository();
-  BranchFactory.defineBranch();
-  ReleaseFactory.defineRelease();
-  BlobFactory.defineBlob();
-  TreeFactory.defineTree();
-
-  // Pretender doesn't work with fully qualified URLs
-  GithubAdapter.reopen({
-    // Caution: overriding ember-data private api
-    ajax(url, type, options) {
-      url = url.replace('https://api.github.com', '');
-      return this._super(url, type, options);
-    }
-  });
-
-  return application;
 }

@@ -1,5 +1,5 @@
+import { registerHelper } from '@ember/test';
 import QUnit from 'qunit';
-import Ember from 'ember';
 import assertionBuilder from '../utils/defined-attribute-assertion-builder';
 
 QUnit.assert.githubReleaseOk = assertionBuilder([
@@ -20,7 +20,7 @@ QUnit.assert.githubReleaseOk = assertionBuilder([
   'publishedAt'
 ]);
 
-export default Ember.Test.registerHelper(
+export default registerHelper(
   'assertGithubReleaseOk',
   function (app, assert, release) {
     assert.githubReleaseOk(release);
