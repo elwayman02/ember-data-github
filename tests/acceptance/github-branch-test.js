@@ -13,6 +13,8 @@ moduleForAcceptance('Acceptance | github branch', {
 });
 
 test('finding a branch without authorization', function (assert) {
+  assert.expect(4);
+
   return run(() => {
     return store.findRecord('githubBranch', 'User1/Repository1/branches/Branch1').then((branch) => {
       assert.githubBranchOk(branch);
@@ -24,6 +26,8 @@ test('finding a branch without authorization', function (assert) {
 });
 
 test('finding a branch', function (assert) {
+  assert.expect(4);
+  
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
 
   return run(() => {

@@ -12,6 +12,8 @@ moduleForAcceptance('Acceptance | github blob', {
 });
 
 test('retrieving a blob', function(assert) {
+  assert.expect(4);
+
   server.create('github-blob');
 
   return run(() => {
