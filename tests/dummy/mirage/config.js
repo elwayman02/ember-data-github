@@ -58,4 +58,19 @@ export default function() {
   this.get('/repos/:user/:repo/git/blobs/:blob', ({ db: { githubBlobs } }, { params }) => {
     return githubBlobs.where({ id: params.blob })[0];
   });
+
+  this.get('repos/:user/:repo/releases/:release', ({ db: { githubReleases, githubUsers } }, { params }) => {
+    let release = githubReleases.where({ id: params.release })[0];
+    release.author = githubUsers[0];
+    return release;
+  });
+
+  this.get('repos/:user/:repo/releases', ({ db: { githubReleases, githubUsers } }) => {
+    let releases = githubReleases;
+    releases.forEach((repo) => {
+      repo.author = githubUsers[0];
+      return repo;
+    });
+    return releases;
+  });
 }

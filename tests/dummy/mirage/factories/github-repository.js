@@ -19,15 +19,15 @@ export default Factory.extend({
   created_at: faker.date.past(),
   updated_at: faker.date.past(),
   pushed_at: faker.date.recent(),
-  owner: {
-    id: 1,
-    url: 'https://api.github.com/users/user1'
-  },
   default_branch: function(i) {
     return `branch${i}`;
   },
   url: function(i) {
     return `https://api.github.com/repos/user${i}/repository${i}`;
+  },
+
+  afterCreate(githubRepository, server) {
+    githubRepository.owner = server.create('github-user');
   },
 
   withBranches: trait({

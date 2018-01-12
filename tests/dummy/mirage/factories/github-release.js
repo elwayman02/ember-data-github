@@ -31,7 +31,8 @@ export default Factory.extend({
   prerelease: true,
   created_at: faker.date.past(),
   published_at: faker.date.past(),
-  author: {
-    url: 'https://api.github.com/users/user1'
+
+  afterCreate(release, server) {
+    release.author = server.create('githubUser');
   }
 });
