@@ -37,7 +37,20 @@ export default function() {
     return githubRepositories;
   });
 
-  this.get('users', 'githubUser');
+  this.get('user', ({ db: { githubUsers } }) => {
+    return githubUsers[0];
+  });
+
+  this.get('user/repos', ({ db: { githubUsers, githubRepositories } }) => {
+    let user = githubUsers[0]
+    let repos = githubRepositories.where({ ownerId: user.id });
+    repos.forEach((repo) => {
+      repo.owner = user;
+      return repo;
+    });
+    return repos;
+  });
+
   this.get('users/:user', ({ db: { githubUsers } }) => {
     return githubUsers[0];
   });

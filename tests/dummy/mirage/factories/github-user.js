@@ -1,10 +1,16 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory, faker, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  login: faker.lorem.word(),
-  name: faker.internet.userName(),
+  login: function(i) {
+    return `user${i}`;
+  },
+  name: function(i) {
+    return `User ${i}`;
+  },
   type: 'User',
-  avatar_url: faker.internet.url(),
+  avatar_url: function(i) {
+    return `user${i}-avatar.gif`;
+  },
   public_repos: 1,
   public_gists: 2,
   followers: 3,
@@ -16,5 +22,11 @@ export default Factory.extend({
   },
   url: function(i) {
     return `https://api.github.com/users/user${i}`;
-  }
+  },
+
+  withRepositories: trait({
+    afterCreate(user) {
+      server.createList('githubRepository', 2, { owner: user });
+    }
+  }),
 });
