@@ -41,4 +41,8 @@ export default function() {
   this.get('users/:user', ({ db: { githubUsers } }) => {
     return githubUsers[0];
   });
+
+  this.get('/repos/:user/:repo/git/blobs/:blob', ({ db: { githubBlobs } }, { params }) => {
+    return githubBlobs.where({ id: params.blob })[0];
+  });
 }
