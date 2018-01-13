@@ -77,4 +77,18 @@ export default function() {
   this.get('repos/:user/:repo/git/trees/:tree', ({ db: { githubTrees }}, { params }) => {
     return githubTrees.where({ id: params.tree })[0];
   });
+
+  this.get('/orgs/:org', ({ db: { githubOrganizations } }, { params }) => {
+    return githubOrganizations.where({ login: params.org })[0];
+  });
+
+  this.get('orgs/:org/repos', ({ db: { githubOrganizations, githubRepositories } }) => {
+    let org = githubOrganizations[0]
+    let repos = githubRepositories.where({ ownerId: org.id });
+    repos.forEach((repo) => {
+      repo.owner = org;
+      return repo;
+    });
+    return repos;
+  });
 }
