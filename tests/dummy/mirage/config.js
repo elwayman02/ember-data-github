@@ -73,4 +73,8 @@ export default function() {
     });
     return releases;
   });
+
+  this.get('repos/:user/:repo/git/trees/:tree', ({ db: { githubTrees }}, { params }) => {
+    return githubTrees.where({ id: params.tree })[0];
+  });
 }
