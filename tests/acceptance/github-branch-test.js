@@ -16,7 +16,7 @@ test('finding a branch without authorization', function (assert) {
   assert.expect(4);
 
   return run(() => {
-    return store.findRecord('githubBranch', 'User1/Repository1/branches/Branch1').then((branch) => {
+    return store.findRecord('githubBranch', 'User1/Repository1/branches/branch0').then((branch) => {
       assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
@@ -27,11 +27,11 @@ test('finding a branch without authorization', function (assert) {
 
 test('finding a branch', function (assert) {
   assert.expect(4);
-  
+
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
 
   return run(() => {
-    return store.findRecord('githubBranch', 'user1/repository1/branches/branch1').then((branch) => {
+    return store.findRecord('githubBranch', 'user1/repository1/branches/branch0').then((branch) => {
       assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);

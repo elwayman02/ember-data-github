@@ -1,8 +1,8 @@
 export default function() {
   this.urlPrefix = 'https://api.github.com/'
 
-  this.get('/repos/:owner/:repo/branches/:branch', ({ db: { githubBranches } }) => {
-    return githubBranches[0];
+  this.get('/repos/:owner/:repo/branches/:branch', ({ db: { githubBranches } }, { params }) => {
+    return githubBranches.where({ name: params.branch })[0];
   });
 
   this.get('/repos/:owner/:repo/branches', ({ db: { githubBranches, githubRepositories } }, { params }) => {
