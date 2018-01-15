@@ -33,7 +33,7 @@ test('finding a release', function (assert) {
   server.create('github-release');
 
   return run(() => {
-    return store.queryRecord('githubRelease', { repo: 'user1/repository1', releaseId: '1' }).then((release) => {
+    return store.queryRecord('githubRelease', { repo: 'user1/repository0', releaseId: '1' }).then((release) => {
       assert.githubReleaseOk(release);
       assert.equal(store.peekAll('githubRelease').get('length'), 1, 'loads 1 release');
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
@@ -50,7 +50,7 @@ test('finding all releases', function (assert) {
   server.createList('github-release', 2, { repository });
 
   return run(() => {
-    return store.query('githubRelease', { repo: 'user1/repository1' }).then((releases) => {
+    return store.query('githubRelease', { repo: 'user1/repository0' }).then((releases) => {
       assert.githubReleaseOk(releases.toArray()[0]);
       assert.equal(store.peekAll('githubRelease').get('length'), 2, 'loads 2 releases');
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
@@ -66,7 +66,7 @@ test('getting a releases\' author', function (assert) {
   server.create('github-release');
 
   return run(() => {
-    return store.queryRecord('githubRelease', { repo: 'user1/repository1', releaseId: '1' }).then((release) => {
+    return store.queryRecord('githubRelease', { repo: 'user1/repository0', releaseId: '1' }).then((release) => {
       return release.get('user').then(function (user) {
         assert.githubUserOk(user);
         assert.equal(store.peekAll('githubUser').get('length'), 1, 'loads 1 user');

@@ -43,9 +43,9 @@ test('finding a repository', function (assert) {
 
 test('finding all repositories', function (assert) {
   assert.expect(4);
+
   let owner = server.create('github-user');
   server.create('github-repository', { owner });
-
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
 
   return run(() => {

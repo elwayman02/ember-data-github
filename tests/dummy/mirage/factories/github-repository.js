@@ -27,7 +27,7 @@ export default Factory.extend({
   },
 
   afterCreate(githubRepository, server) {
-    githubRepository.owner = server.create('github-user');
+    server.create('github-user', { repositories: [githubRepository] });
   },
 
   withBranches: trait({

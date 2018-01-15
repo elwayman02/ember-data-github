@@ -33,6 +33,7 @@ export default Factory.extend({
   published_at: faker.date.past(),
 
   afterCreate(release, server) {
-    release.author = server.create('githubUser');
+    let author = server.create('githubUser');
+    release.update('authorId', author.id);
   }
 });
