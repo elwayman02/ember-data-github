@@ -1,31 +1,20 @@
-/* global Factory */
 import { run } from '@ember/runloop';
-
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-import Pretender from 'pretender';
 
-let server, container, store;
+let container, store;
 
 moduleForAcceptance('Acceptance | github tree', {
   beforeEach() {
-    server = new Pretender();
-    server.prepareBody = function (body) {
-      return JSON.stringify(body);
-    };
     container = this.application.__container__;
     store = run(container, 'lookup', 'service:store');
-  },
-
-  afterEach() {
-    server.shutdown();
   }
 });
 
 test('retrieving a tree', function(assert) {
-  server.get('/repos/user1/repo1/git/trees/1', () => {
-    return [200, {}, Factory.build('tree')];
-  });
+  assert.expect(4);
+
+  server.create('githubTree');
 
   return run(() => {
     return store.queryRecord('github-tree', {
@@ -34,16 +23,16 @@ test('retrieving a tree', function(assert) {
     }).then(tree => {
       assert.githubTreeOk(tree);
       assert.equal(store.peekAll('githubTree').get('length'), 1);
-      assert.equal(server.handledRequests.length, 1);
-      assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(server.pretender.handledRequests.length, 1);
+      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
     });
   });
 });
 
 test('retrieving a tree recursively', function(assert) {
-  server.get('/repos/user1/repo1/git/trees/1', () => {
-    return [200, {}, Factory.build('tree')];
-  });
+  assert.expect(7);
+  
+  server.create('githubTree');
 
   return run(() => {
     return store.queryRecord('github-tree', {
@@ -53,11 +42,11 @@ test('retrieving a tree recursively', function(assert) {
     }).then(tree => {
       assert.githubTreeOk(tree);
       assert.equal(store.peekAll('githubTree').get('length'), 1);
-      assert.equal(server.handledRequests.length, 1);
-      assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
-      assert.ok(server.handledRequests[0].queryParams);
-      assert.ok(server.handledRequests[0].queryParams.recursive);
-      assert.equal(server.handledRequests[0].queryParams.recursive, 1);
+      assert.equal(server.pretender.handledRequests.length, 1);
+      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.ok(server.pretender.handledRequests[0].queryParams);
+      assert.ok(server.pretender.handledRequests[0].queryParams.recursive);
+      assert.equal(server.pretender.handledRequests[0].queryParams.recursive, 1);
     });
   });
 });

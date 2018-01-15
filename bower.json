@@ -1,8 +1,0 @@
-{
-  "name": "ember-data-github",
-  "dependencies": {},
-  "devDependencies": {
-    "pretender": "~1.0.0",
-    "rosie": "1.3.0"
-  }
-}
