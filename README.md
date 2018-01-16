@@ -35,13 +35,14 @@ Once you have a token, the authorizer will look like
 ```js
 // app/authorizers/github.js
 
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import Base from 'ember-simple-auth/authorizers/base';
 
 export default Base.extend({
-  session: Ember.inject.service(),
+  session: service(),
   authorize(sessionData, block) {
-    if (this.get('session.isAuthenticated') && !Ember.isEmpty(sessionData.access_token)) {
+    if (this.get('session.isAuthenticated') && !isEmpty(sessionData.access_token)) {
       block('Authorization', `token ${sessionData.access_token}`);
     }
   }
