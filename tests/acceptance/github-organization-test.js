@@ -1,59 +1,78 @@
+/* global Factory */
 import { run } from '@ember/runloop';
+
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import Pretender from 'pretender';
 
-let container, store;
+let server, container, store;
 
 moduleForAcceptance('Acceptance | github organization', {
   beforeEach() {
+    server = new Pretender();
+    server.prepareBody = function (body) {
+      return JSON.stringify(body);
+    };
     container = this.application.__container__;
     store = run(container, 'lookup', 'service:store');
+  },
+
+  afterEach() {
+    server.shutdown();
   }
 });
 
 test('finding an organization without authorization', function (assert) {
-  assert.expect(4);
-
-  server.create('github-organization');
+  server.get('/orgs/Organization1', () => {
+    return [200, {}, Factory.build('organization')];
+  });
 
   return run(() => {
-    return store.findRecord('githubOrganization', 'organization0').then((organization) => {
+    return store.findRecord('githubOrganization', 'Organization1').then((organization) => {
       assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
-      assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(server.handledRequests.length, 1);
+      assert.equal(server.handledRequests[0].requestHeaders.Authorization, undefined);
     });
   });
 });
 
 test('finding an organization', function (assert) {
-  assert.expect(4);
-
-  server.create('github-organization');
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/orgs/organization1', () => {
+    return [200, {}, Factory.build('organization')];
+  });
 
   return run(() => {
-    return store.findRecord('githubOrganization', 'organization0').then((organization) => {
+    return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
-      assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(server.handledRequests.length, 1);
+      assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
     });
   });
 });
 
 test(`finding an organization's repositories`, function (assert) {
-  assert.expect(4);
-  server.create('github-organization', 'withRepositories');
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/orgs/organization1', () => {
+    return [200, {}, Factory.build('organization')];
+  });
+  server.get('/orgs/organization1/repos', () => {
+    let response = [
+      Factory.build('repository'),
+      Factory.build('repository')
+    ];
+    return [200, {}, response];
+  });
 
   return run(() => {
-    return store.findRecord('githubOrganization', 'organization0').then((organization) => {
+    return store.findRecord('githubOrganization', 'organization1').then((organization) => {
       return organization.get('githubRepositories').then(function (repositories) {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
-        assert.equal(server.pretender.handledRequests.length, 2);
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+        assert.equal(server.handledRequests.length, 2);
+        assert.equal(server.handledRequests[1].requestHeaders.Authorization, 'token abc123');
       });
     });
   });

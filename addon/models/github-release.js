@@ -19,7 +19,5 @@ export default DS.Model.extend({
   user: DS.belongsTo('githubUser', {
     async: true,
     inverse: null
-  }),
-
-  repository: DS.belongsTo('githubRepository')
+  })
 });
