@@ -1,5 +1,5 @@
 import GithubSerializer from './github';
-import { decamelize } from 'ember-string';
+import { decamelize } from '@ember/string';
 
 export default GithubSerializer.extend({
   keyForAttribute(attr) {
