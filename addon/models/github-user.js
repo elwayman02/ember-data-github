@@ -13,5 +13,10 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   url: DS.attr('string'),
+  company: DS.attr('string'),
+  blog: DS.attr('string'),
+  location: DS.attr('string'),
+  email: DS.attr('string'),
+  bio: DS.attr('string'),
   githubRepositories: DS.hasMany('githubRepository', { async: true })
 });

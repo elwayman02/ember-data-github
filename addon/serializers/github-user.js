@@ -23,6 +23,11 @@ export default GithubSerializer.extend({
       createdAt: resourceHash.created_at,
       updatedAt: resourceHash.updated_at,
       url: resourceHash.url,
+      company: resourceHash.company,
+      blog: resourceHash.blog,
+      location: resourceHash.location,
+      email: resourceHash.email,
+      bio: resourceHash.bio,
       links: {
         githubRepositories: resourceHash.repos_url
       }
