@@ -55,7 +55,7 @@ test('finding a user by login', function (assert) {
 
 test('finding a user by id', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
-  server.get('/users/1', () => {
+  server.get('/user/1', () => {
     return [200, {}, Factory.build('user')];
   });
 
