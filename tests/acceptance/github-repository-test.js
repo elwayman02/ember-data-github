@@ -39,7 +39,7 @@ test('finding a repository without authorization', function (assert) {
   });
 });
 
-test('finding a repository', function (assert) {
+test('finding a repository by name', function (assert) {
   assert.expect(4);
 
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
@@ -56,6 +56,25 @@ test('finding a repository', function (assert) {
     });
   });
 });
+
+test('finding a repository by id', function (assert) {
+  assert.expect(4);
+
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/repositories/1', () => {
+    return [200, {}, Factory.build('repository')];
+  });
+
+  return run(() => {
+    return store.findRecord('githubRepository', 1).then((repository) => {
+      assert.githubRepositoryOk(repository);
+      assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
+      assert.equal(server.handledRequests.length, 1, 'handles 1 request');
+      assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+    });
+  });
+});
+
 
 test('finding all repositories', function (assert) {
   assert.expect(4);
