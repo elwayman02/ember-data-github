@@ -19,15 +19,16 @@ test('it builds the index URL correctly', function(assert) {
 test('it builds the specified repo name URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
+  const name = 'elwayman02/ember-data-github';
 
-  const repo = 'elwayman02/ember-data-github';
-  assert.equal(adapter.buildURL('github-repository', repo, null, 'findRecord'), `${host}/repos/${repo}`);
+  assert.equal(adapter.buildURL('github-repository', name, null, 'findRecord'), `${host}/repos/${name}`);
 });
 
 test('it builds the specified repo id URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
+  const id = 34598603;
 
-  const repo = 34598603;
-  assert.equal(adapter.buildURL('github-repository', repo, null, 'findRecord'), `${host}/repositories/${repo}`);
+  assert.equal(adapter.buildURL('github-repository', parseInt(id), null, 'findRecord'), `${host}/repositories/${id}`);
+  assert.equal(adapter.buildURL('github-repository', id.toString(), null, 'findRecord'), `${host}/repositories/${id}`);
 });
