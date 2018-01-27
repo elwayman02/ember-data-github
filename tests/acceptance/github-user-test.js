@@ -37,7 +37,7 @@ test('finding a user without authorization', function (assert) {
   });
 });
 
-test('finding a user', function (assert) {
+test('finding a user by login', function (assert) {
   container.lookup('service:github-session').set('githubAccessToken', 'abc123');
   server.get('/users/user1', () => {
     return [200, {}, Factory.build('user')];
@@ -45,6 +45,22 @@ test('finding a user', function (assert) {
 
   return run(() => {
     return store.findRecord('githubUser', 'user1').then((user) => {
+      assert.githubUserOk(user);
+      assert.equal(store.peekAll('githubUser').get('length'), 1);
+      assert.equal(server.handledRequests.length, 1);
+      assert.equal(server.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+    });
+  });
+});
+
+test('finding a user by id', function (assert) {
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+  server.get('/user/1', () => {
+    return [200, {}, Factory.build('user')];
+  });
+
+  return run(() => {
+    return store.findRecord('githubUser', 1).then((user) => {
       assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.handledRequests.length, 1);
