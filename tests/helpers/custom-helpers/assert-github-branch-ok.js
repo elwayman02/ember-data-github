@@ -4,7 +4,9 @@ import assertionBuilder from '../utils/defined-attribute-assertion-builder';
 
 QUnit.assert.githubBranchOk = assertionBuilder([
   'id',
-  'name'
+  'name',
+  'commit',
+  'protected'
 ]);
 
 export default registerHelper(
