@@ -10,6 +10,7 @@ import './custom-helpers/assert-github-user-ok';
 import './custom-helpers/assert-github-release-ok';
 import './custom-helpers/assert-github-blob-ok';
 import './custom-helpers/assert-github-tree-ok';
+import './custom-helpers/assert-github-pull-ok';
 
 export default function startApp(attrs) {
   let attributes = merge({}, config.APP);
