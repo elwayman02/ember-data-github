@@ -1,4 +1,9 @@
 export default function() {
+  this.passthrough('https://api.github.com/**')
+  this.passthrough('http://localhost:4444/api/token');
+}
+
+export function testConfig() {
   this.urlPrefix = 'https://api.github.com/'
 
   this.get('/repos/:owner/:repo/branches/:branch', (schema, request) => {

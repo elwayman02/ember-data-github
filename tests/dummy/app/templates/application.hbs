@@ -1,3 +1,13 @@
 <h2 id="title">Ember Data Github</h2>
 
+API Key: {{config.apiKey}} <br />
+
+{{#if session.isAuthenticated}}
+    Authenticated
+{{else}}
+    Unauthenticated
+{{/if}}
+
+Authorization Code: {{session.data.authenticated.authorizationCode}} <br />
+
 {{outlet}}
