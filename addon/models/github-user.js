@@ -18,5 +18,5 @@ export default DS.Model.extend({
   location: DS.attr('string'),
   email: DS.attr('string'),
   bio: DS.attr('string'),
-  repositories: DS.hasMany('githubRepository', { async: true })
+  repositories: DS.hasMany('githubRepository')
 });

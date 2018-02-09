@@ -11,15 +11,9 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   pushedAt: DS.attr('date'),
-  owner: DS.belongsTo('githubUser', {
-    async: true,
-    inverse: null
-  }),
-  defaultBranch: DS.belongsTo('githubBranch', {
-    async: true,
-    inverse: null
-  }),
-  branches: DS.hasMany('githubBranch', { async: true }),
-  pulls: DS.hasMany('githubPull', { async: true }),
-  releases: DS.hasMany('githubRelease', { async: true })
+  owner: DS.belongsTo('githubUser'),
+  defaultBranch: DS.belongsTo('githubBranch', { inverse: null }),
+  branches: DS.hasMany('githubBranch'),
+  pulls: DS.hasMany('githubPull'),
+  releases: DS.hasMany('githubRelease')
 });

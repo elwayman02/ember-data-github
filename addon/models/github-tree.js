@@ -5,7 +5,7 @@ export default DS.Model.extend({
   url: DS.attr('string'),
   files: DS.attr(), // object
   directories: DS.attr(), // object
-  blobs: DS.hasMany('github-blob', { async: true }),
-  trees: DS.hasMany('github-tree', { async: true }),
+  blobs: DS.hasMany('github-blob'),
+  trees: DS.hasMany('github-tree'),
   truncated: DS.attr('boolean')
 });

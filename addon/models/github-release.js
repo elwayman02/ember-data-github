@@ -16,10 +16,6 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   publishedAt: DS.attr('date'),
 
-  user: DS.belongsTo('githubUser', {
-    async: true,
-    inverse: null
-  }),
-
+  user: DS.belongsTo('githubUser', { inverse: null }),
   repository: DS.belongsTo('githubRepository')
 });

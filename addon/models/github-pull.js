@@ -12,8 +12,5 @@ export default DS.Model.extend({
   mergedAt: DS.attr('date'),
   userLogin: DS.attr('string'),
   userAvatarUrl: DS.attr('string'),
-  user: DS.belongsTo('githubUser', {
-    async: true,
-    inverse: null
-  })
+  user: DS.belongsTo('githubUser', { inverse: null })
 });
