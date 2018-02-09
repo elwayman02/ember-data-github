@@ -61,6 +61,14 @@ export default function() {
     return schema.githubRepositories.findBy({ name: params.repo }).releases;
   });
 
+  this.get('repos/:user/:repo/pulls', (schema, { params }) => {
+    return schema.githubRepositories.findBy({ name: params.repo }).pulls;
+  });
+
+  this.get('repos/:user/:repo/pulls/:pull', (schema, { params }) => {
+    return schema.githubPulls.findBy({ id: params.pull });
+  });
+
   this.get('repos/:user/:repo/git/trees/:tree', (schema, { params }) => {
     return schema.githubTrees.findBy({ id: params.tree });
   });

@@ -141,3 +141,22 @@ test('finding a repository\'s releases', function (assert) {
     });
   });
 });
+
+test('finding a repository\'s pull requests', function (assert) {
+  assert.expect(4);
+
+  let owner = server.create('github-user');
+  server.create('github-repository', { owner }, 'withPulls');
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+
+  return run(() => {
+    return store.findRecord('githubRepository', 'user1/repository1').then((repository) => {
+      return repository.get('pulls').then(function (pulls) {
+        assert.equal(pulls.get('length'), 2, 'loads 2 pull requests');
+        assert.githubPullOk(pulls.toArray()[0]);
+        assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
+        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+      });
+    });
+  });
+});

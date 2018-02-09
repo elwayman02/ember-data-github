@@ -40,5 +40,11 @@ export default Factory.extend({
     afterCreate(repository) {
       server.createList('githubRelease', 2, { repository });
     }
+  }),
+
+  withPulls: trait({
+    afterCreate(repository) {
+      server.createList('githubPull', 2, { repository });
+    }
   })
 });
