@@ -1,0 +1,12 @@
+{{keys.length}}
+{{#bs-accordion as |acc|}}
+  {{#each models as |model|}}
+    {{#acc.item value=model.name title=model.name}}
+      <ul>
+        {{#each model.keys as |key|}}
+          <li>{{key}}</li>
+        {{/each}}
+      </ul>
+    {{/acc.item}}
+  {{/each}}
+{{/bs-accordion}}
