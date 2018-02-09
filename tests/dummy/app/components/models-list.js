@@ -22,10 +22,15 @@ export default Component.extend({
       let { klass } = type;
 
       type['keys'] = A(['id']);
+      type['relationships'] = A();
 
       klass.eachAttribute((key) => {
         type['keys'].push(key);
       });
+
+      klass.eachRelationship((key) => {
+        type['relationships'].push(key);
+      })
     })
 
   }
