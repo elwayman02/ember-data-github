@@ -80,4 +80,8 @@ export default function() {
   this.get('orgs/:org/repos', (schema, { params }) => {
     return schema.githubOrganizations.findBy({ login: params.org }).repositories;
   });
+
+  this.get('orgs/:org/members', (schema, { params }) => {
+    return schema.githubOrganizations.findBy({ login: params.org }).members;
+  });
 }

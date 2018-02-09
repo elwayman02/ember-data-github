@@ -7,6 +7,6 @@ export default Model.extend({
   name: attr('string'),
   avatarUrl: attr('string'),
 
-  users: hasMany('github-user'),
+  members: hasMany('github-member', { inverse: null }),
   repositories: hasMany('github-repository')
 });

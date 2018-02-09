@@ -58,3 +58,20 @@ test(`finding an organization's repositories`, function (assert) {
     });
   });
 });
+
+test(`finding an organization's members`, function (assert) {
+  assert.expect(4);
+  server.create('github-organization', 'withMembers');
+  container.lookup('service:github-session').set('githubAccessToken', 'abc123');
+
+  return run(() => {
+    return store.findRecord('githubOrganization', 'organization0').then((organization) => {
+      return organization.get('members').then(function (members) {
+        assert.equal(members.get('length'), 2);
+        assert.githubMemberOk(members.toArray()[0]);
+        assert.equal(server.pretender.handledRequests.length, 2);
+        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+      });
+    });
+  });
+});
