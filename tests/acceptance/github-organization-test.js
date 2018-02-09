@@ -49,7 +49,7 @@ test(`finding an organization's repositories`, function (assert) {
 
   return run(() => {
     return store.findRecord('githubOrganization', 'organization0').then((organization) => {
-      return organization.get('githubRepositories').then(function (repositories) {
+      return organization.get('repositories').then(function (repositories) {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);

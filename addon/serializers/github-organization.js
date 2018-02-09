@@ -8,8 +8,8 @@ export default GithubSerializer.extend({
       name: hash.name,
       avatarUrl: hash.avatar_url,
       links: {
-        githubUsers: hash.members_url.replace(/\{\/member\}/, ''),
-        githubRepositories: hash.repos_url
+        users: hash.members_url.replace(/\{\/member\}/, ''),
+        repositories: hash.repos_url
       }
     };
     return this._super(type, hash, prop);
