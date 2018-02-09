@@ -1,7 +1,8 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  commit: DS.attr(),
-  protected: DS.attr('boolean')
+export default Model.extend({
+  name: attr('string'),
+  commit: attr(),
+  protected: attr('boolean')
 });

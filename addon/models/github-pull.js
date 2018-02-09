@@ -1,16 +1,19 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  number: DS.attr('number'),
-  title: DS.attr('string'),
-  state: DS.attr('string'),
-  htmlUrl: DS.attr('string'),
-  body: DS.attr('string'),
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date'),
-  closedAt: DS.attr('date'),
-  mergedAt: DS.attr('date'),
-  userLogin: DS.attr('string'),
-  userAvatarUrl: DS.attr('string'),
-  user: DS.belongsTo('githubUser', { inverse: null })
+export default Model.extend({
+  number: attr('number'),
+  title: attr('string'),
+  state: attr('string'),
+  htmlUrl: attr('string'),
+  body: attr('string'),
+  createdAt: attr('date'),
+  updatedAt: attr('date'),
+  closedAt: attr('date'),
+  mergedAt: attr('date'),
+  userLogin: attr('string'),
+  userAvatarUrl: attr('string'),
+
+  user: belongsTo('githubUser', { inverse: null })
 });

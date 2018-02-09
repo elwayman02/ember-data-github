@@ -1,19 +1,22 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  fullName: DS.attr('string'),
-  name: DS.attr('string'),
-  htmlUrl: DS.attr('string'),
-  language: DS.attr('string'),
-  description: DS.attr('string'),
-  fork: DS.attr('boolean'),
-  private: DS.attr('boolean'),
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date'),
-  pushedAt: DS.attr('date'),
-  owner: DS.belongsTo('githubUser'),
-  defaultBranch: DS.belongsTo('githubBranch', { inverse: null }),
-  branches: DS.hasMany('githubBranch'),
-  pulls: DS.hasMany('githubPull'),
-  releases: DS.hasMany('githubRelease')
+export default Model.extend({
+  fullName: attr('string'),
+  name: attr('string'),
+  htmlUrl: attr('string'),
+  language: attr('string'),
+  description: attr('string'),
+  fork: attr('boolean'),
+  private: attr('boolean'),
+  createdAt: attr('date'),
+  updatedAt: attr('date'),
+  pushedAt: attr('date'),
+
+  owner: belongsTo('githubUser'),
+  defaultBranch: belongsTo('githubBranch', { inverse: null }),
+  branches: hasMany('githubBranch'),
+  pulls: hasMany('githubPull'),
+  releases: hasMany('githubRelease')
 });

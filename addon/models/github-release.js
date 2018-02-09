@@ -1,21 +1,23 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  url: DS.attr('string'),
-  htmlUrl: DS.attr('string'),
-  assetsUrl: DS.attr('string'),
-  uploadUrl: DS.attr('string'),
-  tarballUrl: DS.attr('string'),
-  zipballUrl: DS.attr('string'),
-  tagName: DS.attr('string'),
-  targetCommitish: DS.attr('string'),
-  body: DS.attr('string'),
-  draft: DS.attr('boolean'),
-  prerelease: DS.attr('boolean'),
-  createdAt: DS.attr('date'),
-  publishedAt: DS.attr('date'),
+export default Model.extend({
+  name: attr('string'),
+  url: attr('string'),
+  htmlUrl: attr('string'),
+  assetsUrl: attr('string'),
+  uploadUrl: attr('string'),
+  tarballUrl: attr('string'),
+  zipballUrl: attr('string'),
+  tagName: attr('string'),
+  targetCommitish: attr('string'),
+  body: attr('string'),
+  draft: attr('boolean'),
+  prerelease: attr('boolean'),
+  createdAt: attr('date'),
+  publishedAt: attr('date'),
 
-  user: DS.belongsTo('githubUser', { inverse: null }),
-  repository: DS.belongsTo('githubRepository')
+  user: belongsTo('githubUser', { inverse: null }),
+  repository: belongsTo('githubRepository')
 });

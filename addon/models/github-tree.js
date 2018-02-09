@@ -1,11 +1,14 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  sha: DS.attr('string'),
-  url: DS.attr('string'),
-  files: DS.attr(), // object
-  directories: DS.attr(), // object
-  blobs: DS.hasMany('github-blob'),
-  trees: DS.hasMany('github-tree'),
-  truncated: DS.attr('boolean')
+export default Model.extend({
+  sha: attr('string'),
+  url: attr('string'),
+  files: attr(), // object
+  directories: attr(), // object
+  truncated: attr('boolean'),
+
+  blobs: hasMany('github-blob'),
+  trees: hasMany('github-tree')
 });
