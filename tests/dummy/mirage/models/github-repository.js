@@ -2,8 +2,8 @@ import { Model, belongsTo, hasMany } from 'ember-cli-mirage';
 
 export default Model.extend({
   owner: belongsTo('githubUser', { inverse: null }),
-  defaultBranch: belongsTo('githubBranch', { inverse: null }),
-  pulls: hasMany('githubPull'),
-  branches: hasMany('githubBranch'),
-  releases: hasMany('githubRelease')
+  defaultBranch: belongsTo('github-branch', { inverse: null }),
+  pulls: hasMany('github-pull'),
+  branches: hasMany('github-branch'),
+  releases: hasMany('github-release')
 });

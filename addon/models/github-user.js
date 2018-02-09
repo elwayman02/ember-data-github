@@ -21,5 +21,5 @@ export default Model.extend({
   email: attr('string'),
   bio: attr('string'),
 
-  repositories: hasMany('githubRepository')
+  repositories: hasMany('github-repository')
 });

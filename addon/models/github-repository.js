@@ -14,9 +14,9 @@ export default Model.extend({
   updatedAt: attr('date'),
   pushedAt: attr('date'),
 
-  owner: belongsTo('githubUser'),
-  defaultBranch: belongsTo('githubBranch', { inverse: null }),
-  branches: hasMany('githubBranch'),
-  pulls: hasMany('githubPull'),
-  releases: hasMany('githubRelease')
+  owner: belongsTo('github-user'),
+  defaultBranch: belongsTo('github-branch', { inverse: null }),
+  branches: hasMany('github-branch'),
+  pulls: hasMany('github-pull'),
+  releases: hasMany('github-release')
 });

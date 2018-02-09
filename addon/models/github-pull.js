@@ -15,5 +15,5 @@ export default Model.extend({
   userLogin: attr('string'),
   userAvatarUrl: attr('string'),
 
-  user: belongsTo('githubUser', { inverse: null })
+  user: belongsTo('github-user', { inverse: null })
 });

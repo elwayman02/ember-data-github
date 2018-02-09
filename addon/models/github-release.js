@@ -18,6 +18,6 @@ export default Model.extend({
   createdAt: attr('date'),
   publishedAt: attr('date'),
 
-  user: belongsTo('githubUser', { inverse: null }),
-  repository: belongsTo('githubRepository')
+  user: belongsTo('github-user', { inverse: null }),
+  repository: belongsTo('github-repository')
 });
