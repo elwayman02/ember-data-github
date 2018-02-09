@@ -3,8 +3,12 @@ import { get } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { pluralize } from 'ember-inflector';
 import DS from 'ember-data';
+import { decamelize } from '@ember/string';
 
 export default DS.RESTSerializer.extend({
+  keyForAttribute(attr) {
+    return decamelize(attr);
+  },
 
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     payload.recordId = id;

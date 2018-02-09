@@ -1,11 +1,6 @@
-import GithubSerializer from './github';
-import { decamelize } from '@ember/string';
+import GithubSerializer from 'ember-data-github/serializers/github';
 
 export default GithubSerializer.extend({
-  keyForAttribute(attr) {
-    return decamelize(attr);
-  },
-
   normalize(modelClass, resourceHash, prop) {
     resourceHash.links = {
       user: resourceHash.author.url

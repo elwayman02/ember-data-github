@@ -7,7 +7,8 @@ export default Factory.extend({
   name: function(i) {
     return `User ${i}`;
   },
-  type: 'User',
+  // needs to be the actual related model name for Ember Data reasons? 🤔
+  type: 'github-user',
   avatar_url: function(i) {
     return `user${i}-avatar.gif`;
   },
