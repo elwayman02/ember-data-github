@@ -82,7 +82,7 @@ test(`finding a user's repositories`, function (assert) {
 
   return run(() => {
     return store.findRecord('githubUser', 'user1').then((user) => {
-      return user.get('githubRepositories').then((repositories) => {
+      return user.get('repositories').then((repositories) => {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);

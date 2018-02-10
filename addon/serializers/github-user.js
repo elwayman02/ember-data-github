@@ -29,7 +29,7 @@ export default GithubSerializer.extend({
       email: resourceHash.email,
       bio: resourceHash.bio,
       links: {
-        githubRepositories: resourceHash.repos_url
+        repositories: resourceHash.repos_url
       }
     };
     return this._super(modelClass, normalizedHash, prop);
