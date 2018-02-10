@@ -1,4 +1,4 @@
-import GithubSerializer from './github';
+import GithubSerializer from 'ember-data-github/serializers/github';
 
 export default GithubSerializer.extend({
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
@@ -9,29 +9,11 @@ export default GithubSerializer.extend({
   },
 
   normalize(modelClass, resourceHash, prop) {
-    let normalizedHash = {
-      id: resourceHash.recordId || resourceHash.login,
-      login: resourceHash.login,
-      name: resourceHash.name,
-      type: resourceHash.type,
-      avatarUrl: resourceHash.avatar_url,
-      htmlUrl: resourceHash.html_url,
-      publicRepos: resourceHash.public_repos,
-      publicGists: resourceHash.public_gists,
-      followers: resourceHash.followers,
-      following: resourceHash.following,
-      createdAt: resourceHash.created_at,
-      updatedAt: resourceHash.updated_at,
-      url: resourceHash.url,
-      company: resourceHash.company,
-      blog: resourceHash.blog,
-      location: resourceHash.location,
-      email: resourceHash.email,
-      bio: resourceHash.bio,
-      links: {
-        repositories: resourceHash.repos_url
-      }
-    };
-    return this._super(modelClass, normalizedHash, prop);
+    resourceHash.id = resourceHash.recordId || resourceHash.login;
+    resourceHash.links = {
+      repositories: resourceHash.repos_url
+    }
+
+    return this._super(modelClass, resourceHash, prop);
   }
 });

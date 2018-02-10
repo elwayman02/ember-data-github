@@ -1,17 +1,12 @@
-import GithubSerializer from './github';
+import GithubSerializer from 'ember-data-github/serializers/github';
 
 export default GithubSerializer.extend({
-  normalize(type, hash, prop) {
-    hash = {
-      id: hash.recordId || hash.login,
-      login: hash.login,
-      name: hash.name,
-      avatarUrl: hash.avatar_url,
-      links: {
-        users: hash.members_url.replace(/\{\/member\}/, ''),
-        repositories: hash.repos_url
-      }
+  normalize(modelClass, resourceHash, prop) {
+    resourceHash.id = resourceHash.recordId || resourceHash.login;
+    resourceHash.links = {
+      users: resourceHash.members_url.replace(/\{\/member\}/, ''),
+      repositories: resourceHash.repos_url
     };
-    return this._super(type, hash, prop);
+    return this._super(modelClass, resourceHash, prop);
   }
 });
