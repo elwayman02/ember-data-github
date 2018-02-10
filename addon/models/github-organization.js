@@ -1,9 +1,12 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  login: DS.attr('string'),
-  name: DS.attr('string'),
-  avatarUrl: DS.attr('string'),
-  users: DS.hasMany('githubUser', { async: true }),
-  repositories: DS.hasMany('githubRepository', { async: true })
+export default Model.extend({
+  login: attr('string'),
+  name: attr('string'),
+  avatarUrl: attr('string'),
+
+  users: hasMany('github-user'),
+  repositories: hasMany('github-repository')
 });

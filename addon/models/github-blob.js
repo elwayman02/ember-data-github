@@ -1,9 +1,10 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
 
-export default DS.Model.extend({
-  sha: DS.attr('string'),
-  url: DS.attr('string'),
-  content: DS.attr('string'),
-  encoding: DS.attr('string'),
-  size: DS.attr('number')
+export default Model.extend({
+  sha: attr('string'),
+  url: attr('string'),
+  content: attr('string'),
+  encoding: attr('string'),
+  size: attr('number')
 });
