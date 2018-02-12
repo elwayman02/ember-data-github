@@ -158,6 +158,35 @@ this.get('store').queryRecord('github-blob', { repo: 'jimmay5469/old-hash', sha:
 this.get('store').queryRecord('github-tree', { repo: 'jimmay5469/old-hash', sha: '47c5438403ca875f170db2aa07d1bfa3689406e3' });
 ```
 
+## Testing with Mirage
+
+This addon uses [ember-cli-mirage](http://www.ember-cli-mirage.com/) in its tests.  It is often beneficial for consuming apps to be able to re-use the factories and models defined in mirage, so if you would like to use these in your tests you can add the `mirage-support` object to your `ember-cli-build.js` file:
+
+```
+module.exports = function(defaults) {
+  let app = new EmberApp(defaults, {
+    ...
+    'mirage-support': {
+      includeAll: true
+    }
+    ...
+  });
+
+  return app.toTree();
+};
+```
+
+
+As long as `ember-cli-mirage` is not disabled, the files in this addon's `mirage-support` directory will be merged with the consuming app's namespace, and be made available to that mirage context.
+The `'mirage-support'` key has 3 options:
+
+Key | Type | Description
+--- | --- | ---
+`includeAll` | `Boolean` | If `true`, includes the full `mirage-support` tree, i.e. no-brainer just use it all.
+`exclude` | _{Array of `GlobStrings,RegExps,Functions`}_ | This value gets passed directly to `broccoli-funnel`, *only* if `includeAll` is specified. Allows for excluding certain files from import.
+`include` | _{Array of `GlobStrings,RegExps,Functions`}_ | Passed dirctly to `broccoli-funnel`. Allows to pick only certain files to be imported into app namespace.
+
+
 ## Contributing
 
 ### Installation

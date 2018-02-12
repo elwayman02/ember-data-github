@@ -23,6 +23,8 @@
     "changelog": "lerna-changelog"
   },
   "dependencies": {
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^6.9.0"
   },
   "devDependencies": {
