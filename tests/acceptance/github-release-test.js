@@ -67,7 +67,7 @@ test('getting a releases\' author', function (assert) {
 
   return run(() => {
     return store.queryRecord('githubRelease', { repo: 'user1/repository0', releaseId: '1' }).then((release) => {
-      return release.get('user').then(function (user) {
+      return release.get('author').then(function (user) {
         assert.githubUserOk(user);
         assert.equal(store.peekAll('githubUser').get('length'), 1, 'loads 1 user');
         assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
