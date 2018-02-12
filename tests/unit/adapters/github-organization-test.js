@@ -16,7 +16,7 @@ test('it builds the index URL correctly', function(assert) {
   assert.equal(adapter.buildURL('organizations', null, null), `${host}/orgs`);
 });
 
-test('it build the specified org URL correctly', function(assert) {
+test('it builds the specified org URL correctly', function(assert) {
   let adapter = this.subject();
   const host = adapter.get('host');
   const org = 'ember';

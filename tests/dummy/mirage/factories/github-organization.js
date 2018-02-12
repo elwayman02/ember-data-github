@@ -22,4 +22,9 @@ export default Factory.extend({
       server.createList('githubRepository', 2, { owner: organization });
     }
   }),
+  withMembers: trait({
+    afterCreate(organization) {
+      server.createList('githubMember', 2, { organization });
+    }
+  })
 });
