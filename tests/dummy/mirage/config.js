@@ -1,4 +1,4 @@
-export default function() {
+export default function testConfig() {
   this.urlPrefix = 'https://api.github.com/'
 
   this.get('/repos/:owner/:repo/branches/:branch', (schema, request) => {
