@@ -73,6 +73,10 @@ export default function testConfig() {
     return schema.githubTrees.findBy({ id: params.tree });
   });
 
+  this.get('repos/:user/:repo/compare/:base...:head', (schema) => {
+    return schema.githubCompares.first();
+  });
+
   this.get('/orgs/:org', (schema, { params }) => {
     return schema.githubOrganizations.findBy({ login: params.org });
   });

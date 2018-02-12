@@ -112,6 +112,14 @@ this.get('store').query('github-release', { repo: 'jimmay5469/old-hash' });
 this.get('store').queryRecord('github-release', { repo: 'jimmay5469/old-hash', releaseId: 1 });
 ```
 
+##### [Commits](https://developer.github.com/v3/repos/commits/)
+
+###### [Compate two commits](https://developer.github.com/v3/repos/commits/#compare-two-commits)
+
+```js
+this.get('store').queryRecord('github-compare', { repo: 'jimmay5469/old-hash', base: '1234', head: '5678' });
+```
+
 #### [Pull Requests](https://developer.github.com/v3/pulls/)
 
 ##### [List pull requests](https://developer.github.com/v3/pulls/#list-pull-requests)
