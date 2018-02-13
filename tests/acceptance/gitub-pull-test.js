@@ -70,7 +70,7 @@ test('getting a pull request\'s author', function (assert) {
       return pull.get('user').then(function (user) {
         assert.githubUserOk(user);
         assert.equal(store.peekAll('githubUser').get('length'), 1, 'loads 1 user');
-        assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
+        assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 requests');
         assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
     });

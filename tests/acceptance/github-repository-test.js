@@ -83,7 +83,7 @@ test('getting a repository\'s owner', function (assert) {
     return store.findRecord('githubRepository', 'user0/repository0').then((repository) => {
       return repository.get('owner').then(function (owner) {
         assert.githubUserOk(owner);
-        assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
+        assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request1');
         assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
       });
     });
