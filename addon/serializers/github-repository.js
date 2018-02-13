@@ -1,10 +1,16 @@
 import GithubSerializer from 'ember-data-github/serializers/github';
+import DS from 'ember-data';
 
-export default GithubSerializer.extend({
+const { EmbeddedRecordsMixin } = DS;
+
+export default GithubSerializer.extend(EmbeddedRecordsMixin, {
+  attrs: {
+    owner: { embedded: 'always' }
+  },
+
   normalize(modelClass, resourceHash, prop) {
     resourceHash.id = resourceHash.recordId || resourceHash.full_name,
     resourceHash.links = {
-      owner: resourceHash.owner.url,
       defaultBranch: `${resourceHash.url}/branches/${resourceHash.default_branch}`,
       branches: `${resourceHash.url}/branches`,
       pulls: `${resourceHash.url}/pulls`,
