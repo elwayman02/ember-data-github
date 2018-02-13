@@ -4,7 +4,7 @@
 [![Ember Observer Score](http://emberobserver.com/badges/ember-data-github.svg)](http://emberobserver.com/addons/ember-data-github)
 [![Code Climate](https://codeclimate.com/github/elwayman02/ember-data-github/badges/gpa.svg)](https://codeclimate.com/github/elwayman02/ember-data-github)
 
-Ember Data abstraction for the [GitHub API](https://developer.github.com/v3/).
+Ember Data abstraction for the [GitHub REST API v3](https://developer.github.com/v3/).
 
 ## Installation
 
@@ -64,24 +64,90 @@ export default GitHubUserAdapter.extend(DataAdapterMixin, {
 ```
 
 ### Retrieving GitHub Data
-The following examples show how to retrieve each supported GitHub entity as you might use it in your `model` hook.
+
+#### [Users](https://developer.github.com/v3/users/)
+
+##### [Get the current authenticated user](https://developer.github.com/v3/users/#get-the-authenticated-user)
 ```js
-this.get('store').findRecord('github-user', '#'); // get the current user
+this.get('store').findRecord('github-user', '#');
+```
+
+##### [Get a single user](https://developer.github.com/v3/users/#get-a-single-user)
+```js
 this.get('store').findRecord('github-user', 'jimmay5469'); // get a user by user login
 this.get('store').findRecord('github-user', 917672); // get a user by user id
+```
+
+#### [Repositories](https://developer.github.com/v3/repos/)
+
+##### [Get](https://developer.github.com/v3/repos/#get)
+```js
 this.get('store').findRecord('github-repository', 'jimmay5469/old-hash'); // get a repository by repository name
 this.get('store').findRecord('github-repository', 34598603); // get a repository by repository id
+```
+
+##### [Branches](https://developer.github.com/v3/repos/branches/)
+
+###### [List branches](https://developer.github.com/v3/repos/branches/#list-branches)
+
+```js
+this.get('store').query('github-branch', { repo: 'jimmay5469/old-hash' });
+```
+
+###### [Get](https://developer.github.com/v3/repos/branches/#get-branch)
+```js
 this.get('store').findRecord('github-branch', 'jimmay5469/old-hash/branches/master'); // get a branch
 this.get('store').queryRecord('github-branch', { repo: 'jimmay5469/old-hash', branch: 'master' }); // get a specific branch
-this.get('store').query('github-branch', { repo: 'jimmay5469/old-hash' }); // get a repo's branches
-this.get('store').queryRecord('github-release', { repo: 'jimmay5469/old-hash', releaseId: 1 }); // get a specific release
-this.get('store').query('github-release', { repo: 'jimmay5469/old-hash' }); // get a repo's releases
-this.get('store').queryRecord('github-pull', { repo: 'jimmay5469/old-hash', pullId: 1 }); // get a specific pull request
-this.get('store').query('github-pull', { repo: 'jimmay5469/old-hash' }); // get a repo's pull requests
-this.get('store').queryRecord('github-blob', { repo: 'jimmay5469/old-hash', sha: '47c5438403ca875f170db2aa07d1bfa3689406e3' }); // get a file's contents
+```
 
+##### [Releases](https://developer.github.com/v3/repos/releases/)
+
+###### [List releases for a repository](https://developer.github.com/v3/repos/releases/#list-releases-for-a-repository)
+```js
+this.get('store').query('github-release', { repo: 'jimmay5469/old-hash' });
+```
+
+###### [Get a single release](https://developer.github.com/v3/repos/releases/#get-a-single-release)
+```js
+this.get('store').queryRecord('github-release', { repo: 'jimmay5469/old-hash', releaseId: 1 });
+```
+
+#### [Pull Requests](https://developer.github.com/v3/pulls/)
+
+##### [List pull requests](https://developer.github.com/v3/pulls/#list-pull-requests)
+```js
+this.get('store').query('github-pull', { repo: 'jimmay5469/old-hash' });
+```
+
+##### [Get a single pull request](https://developer.github.com/v3/pulls/#get-a-single-pull-request)
+```js
+this.get('store').queryRecord('github-pull', { repo: 'jimmay5469/old-hash', pullId: 1 });
+```
+#### [GitHub Organizations](https://developer.github.com/v3/orgs/)
+
+##### [Get an organizaton](https://developer.github.com/v3/orgs/#get-an-organization)
+```js
 this.get('store').findRecord('github-organization', { org: 'my-org' });
+```
+
+##### [Get organization members](https://developer.github.com/v3/orgs/members/#members-list)
+```js
 this.get('store').query('github-members', { org: 'my-org' })
+```
+
+#### [Git Blobs](https://developer.github.com/v3/git/blobs/)
+
+##### [Get a blob](https://developer.github.com/v3/git/blobs/#get-a-blob)
+
+```js
+this.get('store').queryRecord('github-blob', { repo: 'jimmay5469/old-hash', sha: '47c5438403ca875f170db2aa07d1bfa3689406e3' });
+```
+#### [Git Trees](https://developer.github.com/v3/git/trees/)
+
+##### [Get a Tree](https://developer.github.com/v3/git/trees/#get-a-tree)
+
+```js
+this.get('store').queryRecord('github-tree', { repo: 'jimmay5469/old-hash', sha: '47c5438403ca875f170db2aa07d1bfa3689406e3' });
 ```
 
 ## Contributing
