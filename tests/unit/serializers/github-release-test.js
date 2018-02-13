@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('github-release', 'Unit | Serializer | github release', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:github-release', 'model:github-user']
+  needs: ['serializer:github-release', 'model:github-user', 'model:github-repository']
 });
 
 // Replace this with your real tests.
