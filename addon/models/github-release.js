@@ -21,8 +21,8 @@ export default Model.extend({
   publishedAt: attr('date'),
 
   author: belongsTo('github-user', { inverse: null }),
-  user: computed(function() {
-    deprecate('The user property on the github-release model has been deprecated.  Please use the author property.', false, { id: 'ember-data-github.release-author', until: '1.0.0' });
+  user: computed('author', function() {
+    deprecate('The user property on the github-release model has been deprecated.  Please use the author property.', false, { id: 'ember-data-github.deprecated-model-props', until: '1.0.0' });
     return this.get('author');
   }),
   repository: belongsTo('github-repository')
