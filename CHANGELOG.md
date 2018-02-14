@@ -1,3 +1,31 @@
+## v0.6.0 (2018-02-14)
+
+#### Enhancement
+* [#142](https://github.com/elwayman02/ember-data-github/pull/142)  allow consuming apps to use mirage factories/models/serializers. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#140](https://github.com/elwayman02/ember-data-github/pull/140) Add github-compare. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#148](https://github.com/elwayman02/ember-data-github/pull/148) use embeddedrecord to pull user out of payloads. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#143](https://github.com/elwayman02/ember-data-github/pull/143) properly deprecate removed properties. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#137](https://github.com/elwayman02/ember-data-github/pull/137) Setup members relationship on organizations. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#138](https://github.com/elwayman02/ember-data-github/pull/138) rename user property on github-release to author. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#133](https://github.com/elwayman02/ember-data-github/pull/133) DRY up how attributes are deserialized. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#132](https://github.com/elwayman02/ember-data-github/pull/132) Model updates. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#131](https://github.com/elwayman02/ember-data-github/pull/131) remove github from relation property names. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#127](https://github.com/elwayman02/ember-data-github/pull/127) add additional fields to github-branch. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#123](https://github.com/elwayman02/ember-data-github/pull/123) Convert test suite to use mirage. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Documentation
+* [#147](https://github.com/elwayman02/ember-data-github/pull/147) Better organize supported apis. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#146](https://github.com/elwayman02/ember-data-github/pull/146) generate changelog with lerna-changelog. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#134](https://github.com/elwayman02/ember-data-github/pull/134) Demo app. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Internal
+* [#151](https://github.com/elwayman02/ember-data-github/pull/151) ember-cli-update to 3.0. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#145](https://github.com/elwayman02/ember-data-github/pull/145) chore(package): update ember-data to version 3.0.1. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+* [#126](https://github.com/elwayman02/ember-data-github/pull/126) add tests for github-pull. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Committers: 1
+- Brian Runnells ([Dhaulagiri](https://github.com/Dhaulagiri))
+
 ## 0.5.0 (2018-01-27)
 
 #### Enhancement
