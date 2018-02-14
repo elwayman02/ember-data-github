@@ -57,7 +57,7 @@ module.exports = {
     },
     // mirage files
     {
-      files: ['tests/dummy/mirage/**'],
+      files: ['tests/dummy/mirage/**', 'mirage-support/**'],
       rules: {
         'ember/avoid-leaking-state-in-ember-objects': 'off'
       }
