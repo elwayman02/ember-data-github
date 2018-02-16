@@ -86,6 +86,13 @@ this.get('store').findRecord('github-repository', 'jimmay5469/old-hash'); // get
 this.get('store').findRecord('github-repository', 34598603); // get a repository by repository id
 ```
 
+##### [Get By User](https://developer.github.com/v3/repos/#list-user-repositories)
+```js
+this.get('store').query('github-repository', { user: 'elwayman02' }); // get repositories owned by user
+this.get('store').query('github-repository', { user: 'elwayman02', type: 'all' }); // get all repositories for user
+this.get('store').query('github-repository', { user: 'elwayman02', sort: 'updated', direction: 'asc' }); // get repositories owned by user sorted by last updated, ascending
+```
+
 ##### [Branches](https://developer.github.com/v3/repos/branches/)
 
 ###### [List branches](https://developer.github.com/v3/repos/branches/#list-branches)
