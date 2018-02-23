@@ -9,7 +9,7 @@ export default GithubSerializer.extend(EmbeddedRecordsMixin, {
   },
 
   normalize(modelClass, resourceHash, prop) {
-    resourceHash.id = resourceHash.recordId || resourceHash.full_name,
+    resourceHash.id = resourceHash.recordId || resourceHash.full_name;
     resourceHash.links = {
       defaultBranch: `${resourceHash.url}/branches/${resourceHash.default_branch}`,
       branches: `${resourceHash.url}/branches`,
