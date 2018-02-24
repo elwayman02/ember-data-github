@@ -1,3 +1,11 @@
+## v0.7.0 (2018-02-23)
+
+#### Enhancement
+* [#153](https://github.com/elwayman02/ember-data-github/pull/153) Retrieve Repo List By User. ([@elwayman02](https://github.com/elwayman02))
+
+#### Committers: 1
+- Jordan Hawker ([elwayman02](https://github.com/elwayman02))
+
 ## v0.6.0 (2018-02-14)
 
 #### Enhancement
