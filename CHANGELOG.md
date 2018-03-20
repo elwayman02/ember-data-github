@@ -1,3 +1,14 @@
+## 0.7.1 (2018-03-20)
+
+#### Bug Fix
+* [#161](https://github.com/elwayman02/ember-data-github/pull/161) move mirage application serializer to addon to avoid conflicts. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Internal
+* [#162](https://github.com/elwayman02/ember-data-github/pull/162) lock ember-cli-mirage to 0.4.1. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Committers: 1
+- Brian Runnells ([Dhaulagiri](https://github.com/Dhaulagiri))
+
 ## v0.7.0 (2018-02-23)
 
 #### Enhancement
