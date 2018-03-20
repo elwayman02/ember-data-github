@@ -1,4 +1,4 @@
-import ApplicationSerializer from './application';
+import ApplicationSerializer from './addon';
 import { underscore } from '@ember/string';
 
 export default ApplicationSerializer.extend({
