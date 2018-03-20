@@ -1,7 +1,7 @@
-import ApplicationSerializer from './application';
+import EmberDataGithubSerializer from './ember-data-github';
 import { underscore } from '@ember/string';
 
-export default ApplicationSerializer.extend({
+export default EmberDataGithubSerializer.extend({
   include: ['mergeBaseCommit', 'baseCommit', 'files', 'commits'],
 
   keyForEmbeddedRelationship(attributeName) {

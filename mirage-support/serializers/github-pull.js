@@ -1,5 +1,5 @@
-import ApplicationSerializer from './application';
+import EmberDataGithubSerializer from './ember-data-github';
 
-export default ApplicationSerializer.extend({
+export default EmberDataGithubSerializer.extend({
   include: ['user']
 });
