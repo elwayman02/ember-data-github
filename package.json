@@ -1,6 +1,6 @@
 {
   "name": "ember-data-github",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Ember Data abstraction for the GitHub API",
   "keywords": [
     "ember-addon",
