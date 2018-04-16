@@ -13,6 +13,7 @@ import './custom-helpers/assert-github-tree-ok';
 import './custom-helpers/assert-github-pull-ok';
 import './custom-helpers/assert-github-member-ok';
 import './custom-helpers/assert-github-compare-ok';
+import './custom-helpers/assert-github-repository-contents-ok';
 
 export default function startApp(attrs) {
   let attributes = merge({}, config.APP);
