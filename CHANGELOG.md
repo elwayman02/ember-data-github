@@ -1,4 +1,12 @@
-## 0.7.1 (2018-03-20)
+## v0.8.0 (2018-04-17)
+
+#### Enhancement
+* [#167](https://github.com/elwayman02/ember-data-github/pull/167) Add support for GitHub repository contents. ([@jmar910](https://github.com/jmar910))
+
+#### Committers: 1
+- James Martinez ([jmar910](https://github.com/jmar910))
+
+## v0.7.1 (2018-03-20)
 
 #### Bug Fix
 * [#161](https://github.com/elwayman02/ember-data-github/pull/161) move mirage application serializer to addon to avoid conflicts. ([@Dhaulagiri](https://github.com/Dhaulagiri))
