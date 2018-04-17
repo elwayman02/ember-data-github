@@ -77,6 +77,10 @@ export default function testConfig() {
     return schema.githubCompares.first();
   });
 
+  this.get('repos/:user/:repo/contents/:file', (schema, { params }) => {
+    return schema.githubRepositoryContents.findBy({ name: params.file });
+  });
+
   this.get('/orgs/:org', (schema, { params }) => {
     return schema.githubOrganizations.findBy({ login: params.org });
   });

@@ -93,6 +93,15 @@ this.get('store').query('github-repository', { user: 'elwayman02', type: 'all' }
 this.get('store').query('github-repository', { user: 'elwayman02', sort: 'updated', direction: 'asc' }); // get repositories owned by user sorted by last updated, ascending
 ```
 
+##### [Repository Contents](https://developer.github.com/v3/repos/contents/)
+
+##### [Get](https://developer.github.com/v3/repos/contents/#get-contents)
+Note: At this time we only support getting file contents.
+```js
+this.get('store').queryRecord('github-repository-contents', { repo: 'jmar910/test-repo-yay', file: 'app.json' }); // get file contents from repo
+
+```
+
 ##### [Branches](https://developer.github.com/v3/repos/branches/)
 
 ###### [List branches](https://developer.github.com/v3/repos/branches/#list-branches)
