@@ -216,6 +216,10 @@ Key | Type | Description
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
+
 ### Running Tests
 
 * `ember test` – Runs the test suite on the current Ember version
