@@ -21,7 +21,7 @@ test('finding a user without authorization', function (assert) {
       assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });
@@ -37,7 +37,7 @@ test('finding a user by login', function (assert) {
       assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });
@@ -53,7 +53,7 @@ test('finding a user by id', function (assert) {
       assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });
@@ -69,7 +69,7 @@ test('finding all users', function (assert) {
       assert.equal(users.get('length'), 2);
       assert.githubUserOk(users.toArray()[0]);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });
@@ -86,7 +86,7 @@ test(`finding a user's repositories`, function (assert) {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123');
       });
     });
   });

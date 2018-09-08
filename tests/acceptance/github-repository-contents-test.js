@@ -24,7 +24,7 @@ test('retrieving github repository contents', function(assert) {
       assert.githubRepositoryContentsOk(content);
       assert.equal(store.peekAll('githubRepositoryContents').get('length'), 1, 'loads 1 repository contents');
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });

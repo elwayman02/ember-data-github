@@ -20,7 +20,7 @@ test('finding a comparison without authorization', function (assert) {
     return store.queryRecord('githubCompare', { repo: 'user1/repository1', base: '1234', 'head': '1234' }).then((compare) => {
       assert.githubCompareOk(compare);
       assert.equal(store.peekAll('githubCompare').get('length'), 1, 'loads 1 compare');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined, 'has no authorization token');
+      assert.equal(requestHeader(server, 'Authorization'), undefined, 'has no authorization token');
     });
   });
 });
@@ -35,7 +35,7 @@ test('finding a comparison', function (assert) {
     return store.queryRecord('githubCompare', { repo: 'user1/repository1', base: '1234', 'head': '1234' }).then((compare) => {
       assert.githubCompareOk(compare);
       assert.equal(store.peekAll('githubCompare').get('length'), 1, 'loads 1 compare');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });

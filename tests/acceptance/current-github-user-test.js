@@ -21,7 +21,7 @@ test('finding current user', function (assert) {
       assert.githubUserOk(user);
       assert.equal(store.peekAll('githubUser').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });
@@ -35,7 +35,7 @@ test(`finding current user's repositories`, function (assert) {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123');
       });
     });
   });

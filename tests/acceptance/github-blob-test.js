@@ -24,7 +24,7 @@ test('retrieving a blob', function(assert) {
       assert.githubBlobOk(blob);
       assert.equal(store.peekAll('githubBlob').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });

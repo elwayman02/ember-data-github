@@ -14,6 +14,7 @@ import './custom-helpers/assert-github-pull-ok';
 import './custom-helpers/assert-github-member-ok';
 import './custom-helpers/assert-github-compare-ok';
 import './custom-helpers/assert-github-repository-contents-ok';
+import './request-header';
 
 export default function startApp(attrs) {
   let attributes = merge({}, config.APP);

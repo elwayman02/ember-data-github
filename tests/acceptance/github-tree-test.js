@@ -24,7 +24,7 @@ test('retrieving a tree', function(assert) {
       assert.githubTreeOk(tree);
       assert.equal(store.peekAll('githubTree').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });
@@ -43,7 +43,7 @@ test('retrieving a tree recursively', function(assert) {
       assert.githubTreeOk(tree);
       assert.equal(store.peekAll('githubTree').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
       assert.ok(server.pretender.handledRequests[0].queryParams);
       assert.ok(server.pretender.handledRequests[0].queryParams.recursive);
       assert.equal(server.pretender.handledRequests[0].queryParams.recursive, 1);

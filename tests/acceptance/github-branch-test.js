@@ -20,7 +20,7 @@ test('finding a branch without authorization', function (assert) {
       assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });
@@ -35,7 +35,7 @@ test('finding a branch', function (assert) {
       assert.githubBranchOk(branch);
       assert.equal(store.peekAll('githubBranch').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });

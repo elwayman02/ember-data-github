@@ -21,7 +21,7 @@ test('finding a repository without authorization', function (assert) {
       assert.githubRepositoryOk(repository);
       assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined, 'has no authorization token');
+      assert.equal(requestHeader(server, 'Authorization'), undefined, 'has no authorization token');
     });
   });
 });
@@ -36,7 +36,7 @@ test('finding a repository by name', function (assert) {
       assert.githubRepositoryOk(repository);
       assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123', 'has the authorization token');
     });
   });
 });
@@ -51,7 +51,7 @@ test('finding a repository by id', function (assert) {
       assert.githubRepositoryOk(repository);
       assert.equal(store.peekAll('githubRepository').get('length'), 1, 'loads 1 repository');
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123', 'has the authorization token');
     });
   });
 });
@@ -69,7 +69,7 @@ test('finding all repositories', function (assert) {
       assert.equal(repositories.get('length'), 2, 'loads 2 repositories');
       assert.githubRepositoryOk(repositories.toArray()[0]);
       assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request');
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123', 'has the authorization token');
     });
   });
 });
@@ -84,7 +84,7 @@ test('getting a repository\'s owner', function (assert) {
       return repository.get('owner').then(function (owner) {
         assert.githubUserOk(owner);
         assert.equal(server.pretender.handledRequests.length, 1, 'handles 1 request1');
-        assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+        assert.equal(requestHeader(server, 'Authorization'), 'token abc123', 'has the authorization token');
       });
     });
   });
@@ -100,7 +100,7 @@ test('getting a repository\'s default branch', function (assert) {
       return repository.get('defaultBranch').then(function (branch) {
         assert.githubBranchOk(branch);
         assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
-        assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+        assert.equal(requestHeader(server, 'Authorization'), 'token abc123', 'has the authorization token');
       });
     });
   });
@@ -117,7 +117,7 @@ test('finding a repository\'s branches', function (assert) {
         assert.equal(branches.get('length'), 2, 'loads 2 branches');
         assert.githubBranchOk(branches.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123', 'has the authorization token');
       });
     });
   });
@@ -136,7 +136,7 @@ test('finding a repository\'s releases', function (assert) {
         assert.equal(releases.get('length'), 2, 'loads 2 releases');
         assert.githubReleaseOk(releases.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123', 'has the authorization token');
       });
     });
   });
@@ -155,7 +155,7 @@ test('finding a repository\'s pull requests', function (assert) {
         assert.equal(pulls.get('length'), 2, 'loads 2 pull requests');
         assert.githubPullOk(pulls.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2, 'handles 2 requests');
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123', 'has the authorization token');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123', 'has the authorization token');
       });
     });
   });

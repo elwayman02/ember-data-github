@@ -21,7 +21,7 @@ test('finding an organization without authorization', function (assert) {
       assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, undefined);
+      assert.equal(requestHeader(server, 'Authorization'), undefined);
     });
   });
 });
@@ -37,7 +37,7 @@ test('finding an organization', function (assert) {
       assert.githubOrganizationOk(organization);
       assert.equal(store.peekAll('githubOrganization').get('length'), 1);
       assert.equal(server.pretender.handledRequests.length, 1);
-      assert.equal(server.pretender.handledRequests[0].requestHeaders.Authorization, 'token abc123');
+      assert.equal(requestHeader(server, 'Authorization'), 'token abc123');
     });
   });
 });
@@ -53,7 +53,7 @@ test(`finding an organization's repositories`, function (assert) {
         assert.equal(repositories.get('length'), 2);
         assert.githubRepositoryOk(repositories.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123');
       });
     });
   });
@@ -70,7 +70,7 @@ test(`finding an organization's members`, function (assert) {
         assert.equal(members.get('length'), 2);
         assert.githubMemberOk(members.toArray()[0]);
         assert.equal(server.pretender.handledRequests.length, 2);
-        assert.equal(server.pretender.handledRequests[1].requestHeaders.Authorization, 'token abc123');
+        assert.equal(requestHeader(server, 'Authorization', 1), 'token abc123');
       });
     });
   });
