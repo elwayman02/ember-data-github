@@ -46,7 +46,7 @@ test('it extracts links from the Link header', function(assert) {
   let last = '<https://api.github.com/resouce?page=4&per_page=5>; rel="last"';
 
   let headers = {
-    Link: [first, next, prev, last].join(', ')
+    link: [first, next, prev, last].join(', ')
   };
 
   assert.deepEqual(adapter.handleResponse(200, headers, {}, null).links, {
