@@ -1,3 +1,15 @@
+## v0.8.1 (2018-09-27)
+
+#### Bug Fix
+* [#196](https://github.com/elwayman02/ember-data-github/pull/196) Fix `headers.link` not being parsed.. ([@jabrown85](https://github.com/jabrown85))
+
+#### Internal
+* [#169](https://github.com/elwayman02/ember-data-github/pull/169) ember 3.1. ([@Dhaulagiri](https://github.com/Dhaulagiri))
+
+#### Committers: 2
+- Brian Runnells ([Dhaulagiri](https://github.com/Dhaulagiri))
+- Jesse Brown ([jabrown85](https://github.com/jabrown85))
+
 ## v0.8.0 (2018-04-17)
 
 #### Enhancement
