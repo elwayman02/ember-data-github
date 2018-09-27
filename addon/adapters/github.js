@@ -34,7 +34,7 @@ export default RESTAdapter.extend({
   //   }
   //
   handleResponse(status, headers, payload, requestData) {
-    const linkHeader = headers.Link;
+    const linkHeader = headers.link || headers.Link;
     const result = this._super(status, headers, payload, requestData);
     if (isNone(linkHeader)) {
       return result;
