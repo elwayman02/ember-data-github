@@ -46,6 +46,25 @@ test('it extracts links from the Link header', function(assert) {
   let last = '<https://api.github.com/resouce?page=4&per_page=5>; rel="last"';
 
   let headers = {
+    Link: [first, next, prev, last].join(', ')
+  };
+
+  assert.deepEqual(adapter.handleResponse(200, headers, {}, null).links, {
+    first: 'https://api.github.com/resouce?page=1&per_page=5',
+    next: 'https://api.github.com/resouce?page=3&per_page=5',
+    prev: 'https://api.github.com/resouce?page=1&per_page=5',
+    last: 'https://api.github.com/resouce?page=4&per_page=5'
+  });
+});
+
+test('it extracts links from the link header', function(assert) {
+  let adapter = this.subject();
+  let first = '<https://api.github.com/resouce?page=1&per_page=5>; rel="first"';
+  let next = '<https://api.github.com/resouce?page=3&per_page=5>; rel="next"';
+  let prev = '<https://api.github.com/resouce?page=1&per_page=5>; rel="prev"';
+  let last = '<https://api.github.com/resouce?page=4&per_page=5>; rel="last"';
+
+  let headers = {
     link: [first, next, prev, last].join(', ')
   };
 
