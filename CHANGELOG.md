@@ -1,3 +1,12 @@
+## v0.9.0 (2019-10-11)
+
+#### Enhancement
+* [#228](https://github.com/elwayman02/ember-data-github/pull/228) Upgrade to ember-cli-mirage ^1.1.0 ([@code0100fun](https://github.com/code0100fun))
+
+#### Committers: 2
+- Brian Runnells ([@Dhaulagiri](https://github.com/Dhaulagiri))
+- Chase McCarthy ([@code0100fun](https://github.com/code0100fun))
+
 ## v0.8.1 (2018-09-27)
 
 #### Bug Fix
